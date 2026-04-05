@@ -2,7 +2,7 @@ import Header from "./components/Header";
 
 function App() {
     return (
-        <section>
+        <section className="color-surface-secondary h-screen">
             <Header />
         </section>
     );
