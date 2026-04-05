@@ -1,10 +1,14 @@
 import Logo from "./Logo";
+import Selector from "./Selector";
 
-function Header() {
+function Header({ pages }: { pages: string[] }) {
     return (
         <header className="color-surface-primary ps-20 pe-20 pt-6 pb-6 shadow-xs">
-            <div>
+            <div className="flex">
                 <Logo />
+                <div className="w-full self-center flex justify-end">
+                    <Selector pages={pages} selected={pages[0]} />
+                </div>
             </div>
         </header>
     );
