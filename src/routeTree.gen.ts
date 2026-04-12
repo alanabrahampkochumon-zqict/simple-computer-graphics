@@ -11,6 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrimeshesIndexRouteImport } from './routes/trimeshes/index'
+import { Route as TransformationsIndexRouteImport } from './routes/transformations/index'
+import { Route as ShadingIndexRouteImport } from './routes/shading/index'
+import { Route as RaytracingIndexRouteImport } from './routes/raytracing/index'
+import { Route as CurvesIndexRouteImport } from './routes/curves/index'
+import { Route as CompositingIndexRouteImport } from './routes/compositing/index'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -22,31 +28,110 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrimeshesIndexRoute = TrimeshesIndexRouteImport.update({
+  id: '/trimeshes/',
+  path: '/trimeshes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransformationsIndexRoute = TransformationsIndexRouteImport.update({
+  id: '/transformations/',
+  path: '/transformations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShadingIndexRoute = ShadingIndexRouteImport.update({
+  id: '/shading/',
+  path: '/shading/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RaytracingIndexRoute = RaytracingIndexRouteImport.update({
+  id: '/raytracing/',
+  path: '/raytracing/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurvesIndexRoute = CurvesIndexRouteImport.update({
+  id: '/curves/',
+  path: '/curves/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompositingIndexRoute = CompositingIndexRouteImport.update({
+  id: '/compositing/',
+  path: '/compositing/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/compositing/': typeof CompositingIndexRoute
+  '/curves/': typeof CurvesIndexRoute
+  '/raytracing/': typeof RaytracingIndexRoute
+  '/shading/': typeof ShadingIndexRoute
+  '/transformations/': typeof TransformationsIndexRoute
+  '/trimeshes/': typeof TrimeshesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/compositing': typeof CompositingIndexRoute
+  '/curves': typeof CurvesIndexRoute
+  '/raytracing': typeof RaytracingIndexRoute
+  '/shading': typeof ShadingIndexRoute
+  '/transformations': typeof TransformationsIndexRoute
+  '/trimeshes': typeof TrimeshesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/compositing/': typeof CompositingIndexRoute
+  '/curves/': typeof CurvesIndexRoute
+  '/raytracing/': typeof RaytracingIndexRoute
+  '/shading/': typeof ShadingIndexRoute
+  '/transformations/': typeof TransformationsIndexRoute
+  '/trimeshes/': typeof TrimeshesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/compositing/'
+    | '/curves/'
+    | '/raytracing/'
+    | '/shading/'
+    | '/transformations/'
+    | '/trimeshes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/compositing'
+    | '/curves'
+    | '/raytracing'
+    | '/shading'
+    | '/transformations'
+    | '/trimeshes'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/compositing/'
+    | '/curves/'
+    | '/raytracing/'
+    | '/shading/'
+    | '/transformations/'
+    | '/trimeshes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CompositingIndexRoute: typeof CompositingIndexRoute
+  CurvesIndexRoute: typeof CurvesIndexRoute
+  RaytracingIndexRoute: typeof RaytracingIndexRoute
+  ShadingIndexRoute: typeof ShadingIndexRoute
+  TransformationsIndexRoute: typeof TransformationsIndexRoute
+  TrimeshesIndexRoute: typeof TrimeshesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +150,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trimeshes/': {
+      id: '/trimeshes/'
+      path: '/trimeshes'
+      fullPath: '/trimeshes/'
+      preLoaderRoute: typeof TrimeshesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transformations/': {
+      id: '/transformations/'
+      path: '/transformations'
+      fullPath: '/transformations/'
+      preLoaderRoute: typeof TransformationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shading/': {
+      id: '/shading/'
+      path: '/shading'
+      fullPath: '/shading/'
+      preLoaderRoute: typeof ShadingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/raytracing/': {
+      id: '/raytracing/'
+      path: '/raytracing'
+      fullPath: '/raytracing/'
+      preLoaderRoute: typeof RaytracingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/curves/': {
+      id: '/curves/'
+      path: '/curves'
+      fullPath: '/curves/'
+      preLoaderRoute: typeof CurvesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compositing/': {
+      id: '/compositing/'
+      path: '/compositing'
+      fullPath: '/compositing/'
+      preLoaderRoute: typeof CompositingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CompositingIndexRoute: CompositingIndexRoute,
+  CurvesIndexRoute: CurvesIndexRoute,
+  RaytracingIndexRoute: RaytracingIndexRoute,
+  ShadingIndexRoute: ShadingIndexRoute,
+  TransformationsIndexRoute: TransformationsIndexRoute,
+  TrimeshesIndexRoute: TrimeshesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
