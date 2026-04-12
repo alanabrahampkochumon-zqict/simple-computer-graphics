@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TrimeshesIndexRouteImport } from './routes/trimeshes/index'
 import { Route as TransformationsIndexRouteImport } from './routes/transformations/index'
@@ -17,12 +16,8 @@ import { Route as ShadingIndexRouteImport } from './routes/shading/index'
 import { Route as RaytracingIndexRouteImport } from './routes/raytracing/index'
 import { Route as CurvesIndexRouteImport } from './routes/curves/index'
 import { Route as CompositingIndexRouteImport } from './routes/compositing/index'
+import { Route as AnimationIndexRouteImport } from './routes/animation/index'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -58,10 +53,15 @@ const CompositingIndexRoute = CompositingIndexRouteImport.update({
   path: '/compositing/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnimationIndexRoute = AnimationIndexRouteImport.update({
+  id: '/animation/',
+  path: '/animation/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/animation/': typeof AnimationIndexRoute
   '/compositing/': typeof CompositingIndexRoute
   '/curves/': typeof CurvesIndexRoute
   '/raytracing/': typeof RaytracingIndexRoute
@@ -71,7 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/animation': typeof AnimationIndexRoute
   '/compositing': typeof CompositingIndexRoute
   '/curves': typeof CurvesIndexRoute
   '/raytracing': typeof RaytracingIndexRoute
@@ -82,7 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/animation/': typeof AnimationIndexRoute
   '/compositing/': typeof CompositingIndexRoute
   '/curves/': typeof CurvesIndexRoute
   '/raytracing/': typeof RaytracingIndexRoute
@@ -94,7 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
+    | '/animation/'
     | '/compositing/'
     | '/curves/'
     | '/raytracing/'
@@ -104,7 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
+    | '/animation'
     | '/compositing'
     | '/curves'
     | '/raytracing'
@@ -114,7 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/about'
+    | '/animation/'
     | '/compositing/'
     | '/curves/'
     | '/raytracing/'
@@ -125,7 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AnimationIndexRoute: typeof AnimationIndexRoute
   CompositingIndexRoute: typeof CompositingIndexRoute
   CurvesIndexRoute: typeof CurvesIndexRoute
   RaytracingIndexRoute: typeof RaytracingIndexRoute
@@ -136,13 +136,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -192,12 +185,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompositingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/animation/': {
+      id: '/animation/'
+      path: '/animation'
+      fullPath: '/animation/'
+      preLoaderRoute: typeof AnimationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AnimationIndexRoute: AnimationIndexRoute,
   CompositingIndexRoute: CompositingIndexRoute,
   CurvesIndexRoute: CurvesIndexRoute,
   RaytracingIndexRoute: RaytracingIndexRoute,
