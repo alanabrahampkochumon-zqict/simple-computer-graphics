@@ -14,7 +14,7 @@ const Routes: PageRoute[] = [
 
 function RootLayout() {
     return (
-        <main className="h-dvh max-w-dvw grid grid-rows-[auto_minmax(0,1fr)]">
+        <main className="h-dvh flex flex-col">
             <Header pages={Routes} />
             <Outlet />
             <TanStackRouterDevtools />
