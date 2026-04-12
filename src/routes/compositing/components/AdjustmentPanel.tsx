@@ -1,7 +1,9 @@
 function AdjustmentPanel() {
     return (
-        <aside className="pt-6 pb-4 pl-6 pr-4 bg-red-50">
-            Adjustment Panel
+        <aside className="pt-6 pb-4 pl-6 pr-4 color-surface-primary max-w-[400px] min-w-[320px] w-[35%] rounded-tl-3xl rounded-bl-3xl shadow-lg md:mt-4 md:mb-4">
+            <h2 className="text-2xl font-semibold color-content-primary">
+                Adjustments
+            </h2>
         </aside>
     );
 }
