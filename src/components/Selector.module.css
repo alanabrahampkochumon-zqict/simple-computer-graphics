@@ -1,0 +1,34 @@
+.selector-selected {
+    anchor-name: --page-selector-anchor;
+}
+
+/* .selector-item:hover {
+    anchor-name: --page-selector-anchor;
+} */
+
+.anchor {
+    position: absolute;
+    top: anchor(top);
+    bottom: anchor(bottom);
+    left: anchor(left);
+    right: anchor(right);
+    position-anchor: --page-selector-anchor;
+    z-index: -1;
+
+    transition: all 450ms
+        linear(
+            0,
+            0.007 0.9%,
+            0.027 1.8%,
+            0.106 3.8%,
+            0.586 12%,
+            0.789 16.3%,
+            0.926 20.7%,
+            0.973 23.1%,
+            1.006 25.6%,
+            1.029 29.1%,
+            1.037 33.2%,
+            1.001 56.6%,
+            1
+        );
+}
