@@ -12,7 +12,7 @@ function Selector({ pages }: SelectionParams) {
     return (
         <ul className="inline-flex gap-0 p-1.5 self-end color-surface-secondary rounded-full isolate">
             {pages.map((page) => (
-                <li className="inline-flex items-center">
+                <li className="inline-flex items-center" key={page.link}>
                     <Link
                         className={cn(
                             "color-content-tertiary ps-5 pe-5 pt-3 pb-3 rounded-full cursor-pointer items-center",
@@ -20,7 +20,7 @@ function Selector({ pages }: SelectionParams) {
                             currentPath === page.link &&
                                 "color-content-accent font-medium", //color-surface-primary
                             currentPath === page.link &&
-                                styles["selector-selected"], // TODO:Change to a separate div to animate
+                                styles["selector-selected"],
                         )}
                         to={page.link}
                     >

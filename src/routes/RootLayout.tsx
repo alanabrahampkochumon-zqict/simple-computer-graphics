@@ -14,15 +14,11 @@ const Routes: PageRoute[] = [
 
 function RootLayout() {
     return (
-        <>
-            {/* <div className="p-2 flex gap-2">
-                <Selector pages={Routes} />
-            </div>
-            <hr /> */}
+        <main className="h-dvh max-w-dvw grid grid-rows-[auto_minmax(0,1fr)]">
             <Header pages={Routes} />
             <Outlet />
             <TanStackRouterDevtools />
-        </>
+        </main>
     );
 }
 
