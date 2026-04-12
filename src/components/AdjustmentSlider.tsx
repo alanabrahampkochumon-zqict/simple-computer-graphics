@@ -1,4 +1,5 @@
 import { Slider } from "radix-ui";
+import Label from "./Label";
 
 type AdjustmentSliderParams = {
     value: number;
@@ -25,9 +26,7 @@ export default function AdjustmentSlider({
     return (
         <div className="flex flex-col gap-2 justify-between items-center">
             <div className="w-full flex gap-3 justify-between items-center">
-                <p className="color-content-primary text-lg font-semibold">
-                    {label}
-                </p>
+                <Label>{label}</Label>
                 {showPercentage && (
                     <p className="color-content-secondary text-base font-normal">
                         {percentage}%
