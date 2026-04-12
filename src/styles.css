@@ -53,7 +53,7 @@ body,
         @apply border-gray-300;
     }
     .color-border-accent {
-        @apply border-rose-600;
+        @apply border-rose-600 outline-rose-600;
     }
     .color-border-destructive {
         @apply border-red-600;
