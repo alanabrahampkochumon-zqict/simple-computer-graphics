@@ -1,13 +1,47 @@
 import { Slider } from "radix-ui";
 
-export default function AdjustmentSlider() {
+type AdjustmentSliderParams = {
+    value: number;
+    onValueChange: (value: number) => void;
+    label: string;
+    showPercentage?: boolean;
+    min?: number;
+    max?: number;
+    steps?: number;
+    defaultValue?: number;
+};
+
+export default function AdjustmentSlider({
+    value,
+    onValueChange,
+    label,
+    showPercentage = true,
+    min = 0,
+    max = 100,
+    steps = 1,
+    defaultValue = 100,
+}: AdjustmentSliderParams) {
+    const percentage = Math.round((value / (max - min)) * 100);
     return (
-        <form>
+        <div className="flex flex-col gap-2 justify-between items-center">
+            <div className="w-full flex gap-3 justify-between items-center">
+                <p className="color-content-primary text-lg font-semibold">
+                    {label}
+                </p>
+                {showPercentage && (
+                    <p className="color-content-secondary text-base font-normal">
+                        {percentage}%
+                    </p>
+                )}
+            </div>
             <Slider.Root
                 className="h-8  w-full relative flex items-center select-none touch-none"
-                defaultValue={[50]}
-                max={100}
-                step={1}
+                defaultValue={[defaultValue]}
+                max={max}
+                min={min}
+                value={[value]}
+                onValueChange={([value]) => onValueChange(value)}
+                step={steps}
             >
                 <Slider.Track className="shadow-inner color-surface-tertiary relative flex-1 h-2 w-full rounded-full">
                     <Slider.Range className="absolute h-full color-surface-accent rounded-full" />
@@ -17,6 +51,6 @@ export default function AdjustmentSlider() {
                     aria-label="Volume"
                 />
             </Slider.Root>
-        </form>
+        </div>
     );
 }
