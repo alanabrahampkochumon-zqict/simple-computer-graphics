@@ -23,7 +23,7 @@ function DropdownList({
                         className="color-surface-secondary rounded-2xl pl-4 pr-4 pt-3 pb-3 flex gap-2"
                         aria-label="Customise options"
                     >
-                        <span className="flex-1 text-left color-content-primary text-lg font-normal">
+                        <span className="flex-1 text-left color-content-primary text-base font-normal">
                             {currentOption}
                         </span>
                         {/* <ChevronDown /> */}
@@ -37,7 +37,7 @@ function DropdownList({
                     >
                         {options.map((option) => (
                             <DropdownMenu.Item
-                                className="p-4 pl-2 pr-2 text-lg "
+                                className="p-4 pl-2 pr-2 text-base"
                                 onClick={() => onOptionChange(option)}
                             >
                                 {option}
