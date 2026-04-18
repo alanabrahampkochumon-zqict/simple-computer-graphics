@@ -30,19 +30,19 @@ body,
 
     /* Content Colors */
     .color-content-primary {
-        @apply text-gray-950;
+        @apply text-gray-950 stroke-gray-950;
     }
     .color-content-secondary {
-        @apply text-gray-800;
+        @apply text-gray-800 stroke-gray-800;
     }
     .color-content-tertiary {
-        @apply text-gray-700;
+        @apply text-gray-700 stroke-gray-700;
     }
     .color-content-disabled {
-        @apply text-gray-500;
+        @apply text-gray-500 stroke-gray-500;
     }
     .color-content-accent {
-        @apply text-rose-600;
+        @apply text-rose-600 stroke-rose-600;
     }
 
     /* Border Colors */
@@ -57,5 +57,9 @@ body,
     }
     .color-border-destructive {
         @apply border-red-600;
+    }
+
+    .ring-accent {
+        @apply ring-rose-600;
     }
 }
