@@ -46,7 +46,7 @@ export default function AdjustmentSlider({
                     <Slider.Range className="absolute h-full color-surface-accent rounded-full" />
                 </Slider.Track>
                 <Slider.Thumb
-                    className="h-8 w-12 color-surface-primary rounded-full block shadow-sm hover:scale-105 active:scale-95 transition cursor-pointer focus:outline-0 ring-1 ring-transparent focus:ring-rose-600 "
+                    className="h-8 w-12 color-surface-primary rounded-full block shadow-sm hover:scale-105 active:scale-95 transition cursor-pointer focus:outline-0 ring-1 ring-transparent focus-within:ring-rose-600"
                     aria-label="Volume"
                 />
             </Slider.Root>

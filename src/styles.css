@@ -62,4 +62,12 @@ body,
     .ring-accent {
         @apply ring-rose-600;
     }
+
+    .primary-focus {
+        @apply focus:outline-none focus-visible:ring-1 focus-visible:ring-rose-600;
+    }
+
+    .focus-background {
+        @apply focus:outline-none focus-visible:bg-slate-100 transition;
+    }
 }
