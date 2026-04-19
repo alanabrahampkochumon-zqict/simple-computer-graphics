@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AdjustmentSlider from "../../../components/AdjustmentSlider";
 import DropdownList from "../../../components/DropdownList";
+import LayerPanel from "../../../components/LayerPanel";
 
 function AdjustmentPanel() {
     const [opacity, setOpacity] = useState(100);
@@ -26,6 +27,7 @@ function AdjustmentPanel() {
                     onOptionChange={setCurrentBlendMode}
                 />
             </div>
+            <LayerPanel />
         </aside>
     );
 }

@@ -1,3 +1,4 @@
+import LayerPanel from "../../components/LayerPanel";
 import AdjustmentPanel from "./components/AdjustmentPanel";
 
 function CompositorScreen() {
