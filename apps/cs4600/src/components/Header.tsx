@@ -1,4 +1,4 @@
-import Menu from "../assets/icon/menu.svg?react";
+import Menu from "../assets/icon/menu.svg?react"
 import Logo from "./Logo";
 import Selector from "./Selector";
 
