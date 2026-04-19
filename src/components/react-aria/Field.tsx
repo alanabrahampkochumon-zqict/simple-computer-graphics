@@ -8,7 +8,7 @@ import {
 } from "react-aria-components/Input";
 import { Text, type TextProps } from "react-aria-components/Text";
 import { twMerge } from "tailwind-merge";
-import { cn } from "../libs/utils";
+import { cn } from "../../libs/utils";
 
 export function Description(props: TextProps) {
     return (

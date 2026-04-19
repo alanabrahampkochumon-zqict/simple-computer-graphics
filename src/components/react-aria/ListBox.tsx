@@ -10,7 +10,7 @@ const dropdownItemStyles = tv({
     base: "group flex justify-between items-center p-4 pl-6 pr-6 color-surface-primary rounded-xl text-base cursor-pointer transition-colors",
     variants: {
         isDisabled: {
-            false: "color-content-primary",
+            false: "color-content-secondary",
             true: "color-content-disabled",
         },
         isPressed: {

@@ -5,7 +5,7 @@ type DropdownListProps = {
     onOptionChange: (option: string) => void;
 };
 
-import { Select, SelectItem } from "./Dropdown";
+import { Select, SelectItem } from "./react-aria/Dropdown";
 
 function DropdownList({
     label,
@@ -13,11 +13,18 @@ function DropdownList({
     options,
     onOptionChange,
 }: DropdownListProps) {
-    console.log(currentOption);
+    console.log("CurrentOption", currentOption);
     return (
-        <Select label={label} defaultValue={currentOption}>
+        <Select
+            label={label}
+            defaultValue={currentOption}
+            value={currentOption}
+            onChange={(option) =>
+                onOptionChange(option?.toString() || options[0])
+            }
+        >
             {options.map((option) => (
-                <SelectItem key={option} onClick={() => onOptionChange(option)}>
+                <SelectItem id={option} key={option}>
                     {option}
                 </SelectItem>
             ))}
