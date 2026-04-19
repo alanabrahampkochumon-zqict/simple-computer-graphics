@@ -15,7 +15,7 @@ function Selector({ pages }: SelectionParams) {
                 <li className="inline-flex items-center" key={page.link}>
                     <Link
                         className={cn(
-                            "color-content-tertiary ps-5 pe-5 pt-3 pb-3 rounded-full cursor-pointer items-center",
+                            "color-content-tertiary ps-5 pe-5 pt-3 pb-3 rounded-full cursor-pointer items-center text-nowrap",
                             styles["selector-item"],
                             currentPath === page.link &&
                                 "color-content-accent font-medium", //color-surface-primary

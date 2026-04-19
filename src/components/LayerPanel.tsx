@@ -9,7 +9,8 @@ function LayerPanel() {
             <div className="color-surface-secondary flex-1 shadow-inner rounded-2xl">
                 {!layers ||
                     (layers.length < 1 && (
-                        <div className="flex flex-col mt-auto mb-auto h-full items-center justify-center">
+                        <div className="flex flex-col gap-3 h-full mt-auto mb-auto items-center justify-center">
+                            <img src="/layers.svg" alt="" aria-hidden />
                             <div className="flex flex-col gap-1 color-content-tertiary text-center">
                                 <h3 className="text-2xl font-semibold">
                                     No layers added
