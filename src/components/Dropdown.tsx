@@ -11,7 +11,8 @@ import {
 } from "react-aria-components/Select";
 import { tv } from "tailwind-variants";
 import { cn, focusRing } from "../libs/utils";
-import { Description, FieldError, Label } from "./Field";
+import { Description, FieldError } from "./Field";
+import Label from "./Label";
 import {
     DropdownItem,
     DropdownSection,
