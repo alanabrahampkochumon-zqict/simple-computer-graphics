@@ -17,7 +17,8 @@
         "ui:build": "npm run build --workspace=cs4600",
         "lib:dev": "npm run dev --workspace=@falcon-ts/math-lib",
         "lib:build": "npm run build --workspace=@falcon-ts/math-lib",
-        "lib:test": "npm run test --workspace=@falcon-ts/math-lib"
+        "lib:test": "npm run test --workspace=@falcon-ts/math-lib",
+        "build": "npm run build --workspaces"
     },
     "workspaces": [
         "packages/*",
