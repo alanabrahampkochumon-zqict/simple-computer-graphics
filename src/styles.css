@@ -52,6 +52,14 @@ body,
         @apply text-rose-600 stroke-rose-600;
     }
 
+    .color-content-oncolor {
+        @apply text-white stroke-white;
+    }
+
+    .color-content-destructive {
+        @apply text-red-600 stroke-red-600;
+    }
+
     /* Border Colors */
     .color-border-primary {
         @apply border-gray-100;

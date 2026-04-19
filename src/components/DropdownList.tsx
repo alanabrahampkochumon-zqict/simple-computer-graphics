@@ -18,13 +18,10 @@ function DropdownList({
     onOptionChange,
 }: DropdownListProps) {
     return (
-        <Select label="Favorite Animal">
-            <SelectItem>Aardvark</SelectItem>
-            <SelectItem>Cat</SelectItem>
-            <SelectItem>Dog</SelectItem>
-            <SelectItem>Kangaroo</SelectItem>
-            <SelectItem>Panda</SelectItem>
-            <SelectItem>Snake</SelectItem>
+        <Select label={label} defaultValue={currentOption}>
+            {options.map((option) => (
+                <SelectItem key={option}>{option}</SelectItem>
+            ))}
         </Select>
     );
     return (
