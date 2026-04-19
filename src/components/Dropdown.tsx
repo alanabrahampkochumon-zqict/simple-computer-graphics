@@ -18,7 +18,7 @@ import {
     DropdownSection,
     type DropdownSectionProps,
 } from "./ListBox";
-import { Popover } from "./Popover";
+import { Popover } from "./react-aria/Popover";
 
 const styles = tv({
     extend: focusRing,
@@ -58,7 +58,7 @@ export function Select<
             {...props}
             className={cn(
                 props.className,
-                "group flex flex-col gap-1 relative font-sans",
+                "group flex flex-col gap-1 relative font-sans border",
             )}
         >
             {label && <Label>{label}</Label>}

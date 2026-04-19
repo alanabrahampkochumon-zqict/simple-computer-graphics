@@ -22,7 +22,7 @@ const styles = tv({
             true: "animate-out fade-out placement-bottom:slide-out-to-top-1 placement-top:slide-out-to-bottom-1 placement-left:slide-out-to-right-1 placement-right:slide-out-to-left-1 ease-in duration-150",
         },
     },
-});
+}); // TODO: Update animation
 
 export function Popover({
     children,
