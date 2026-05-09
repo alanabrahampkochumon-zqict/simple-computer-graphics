@@ -102,4 +102,5 @@ export class Vector3D {
     subtract(other: Vector3D): Vector3D {
         return new Vector3D(this.buffer[0] - other.x(), this.y() - other.y(), this.z() - other.z());
     }
+
 }

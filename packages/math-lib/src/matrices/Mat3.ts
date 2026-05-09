@@ -95,4 +95,27 @@ export class Mat3 {
 
         return out;
     }
+
+
+    /**
+     * Multiply(scale) a matrix by a factor.
+     *
+     * @param out The matrix to store the result of the operation.
+     * @param mat The matrix to multiply.
+     * @param scalar The scalar to multiply.
+     */
+    static multiplyScalar(out: Mat3, mat: Mat3, scalar: number): Mat3 {
+        out.set(0, 0, mat.get(0, 0) * scalar)
+        out.set(0, 1, mat.get(0, 1) * scalar)
+        out.set(0, 2, mat.get(0, 2) * scalar)
+        out.set(1, 0, mat.get(1, 0) * scalar)
+        out.set(1, 1, mat.get(1, 1) * scalar)
+        out.set(1, 2, mat.get(1, 2) * scalar)
+        out.set(2, 0, mat.get(2, 0) * scalar)
+        out.set(2, 1, mat.get(2, 1) * scalar)
+        out.set(2, 2, mat.get(2, 2) * scalar)
+
+        return out;
+    }
+
 }

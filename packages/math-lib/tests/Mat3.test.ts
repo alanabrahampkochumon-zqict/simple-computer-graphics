@@ -173,3 +173,50 @@ describe("Mat3: Subtract", () => {
         expect(returnedMat).toBe(matC)
     })
 })
+
+
+describe("Mat3: Multiply", () => {
+
+    const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92)
+    const scalar = 2
+
+    test("modifies out matrix with the result, when matrix is multiplied with a scalar", () => {
+        const matC = new Mat3()
+
+        Mat3.multiplyScalar(matC, matA, scalar)
+
+        expect(matC.get(0, 0)).toStrictEqual(24)
+        expect(matC.get(0, 1)).toStrictEqual(44)
+        expect(matC.get(0, 2)).toStrictEqual(62)
+        expect(matC.get(1, 0)).toStrictEqual(86)
+        expect(matC.get(1, 1)).toStrictEqual(102)
+        expect(matC.get(1, 2)).toStrictEqual(130)
+        expect(matC.get(2, 0)).toStrictEqual(142)
+        expect(matC.get(2, 1)).toStrictEqual(162)
+        expect(matC.get(2, 2)).toStrictEqual(184)
+    })
+
+    test("do not modify the original matrix, when matrix is multiplied with a scalar", () => {
+        const matC = new Mat3()
+
+        Mat3.multiplyScalar(matC, matA, scalar)
+
+        expect(matA.get(0, 0)).toStrictEqual(12)
+        expect(matA.get(0, 1)).toStrictEqual(22)
+        expect(matA.get(0, 2)).toStrictEqual(31)
+        expect(matA.get(1, 0)).toStrictEqual(43)
+        expect(matA.get(1, 1)).toStrictEqual(51)
+        expect(matA.get(1, 2)).toStrictEqual(65)
+        expect(matA.get(2, 0)).toStrictEqual(71)
+        expect(matA.get(2, 1)).toStrictEqual(81)
+        expect(matA.get(2, 2)).toStrictEqual(92)
+    })
+
+    test("returns the out matrix, when matrix is multiplied with a scalar", () => {
+        const matC = new Mat3()
+
+        const returnedMat = Mat3.multiplyScalar(matC, matA, scalar)
+
+        expect(returnedMat).toBe(matC)
+    })
+})
