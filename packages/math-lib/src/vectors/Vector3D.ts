@@ -1,5 +1,5 @@
 export class Vector3D {
-    public readonly buffer: Float32Array = new Float32Array(3).fill(0);
+    public readonly buffer: Float32Array = new Float32Array(3);
 
     /**
      * Instantiate a 3D vector with its components.
@@ -85,10 +85,21 @@ export class Vector3D {
      *
      * @param other The vector to add.
      *
-     * @returns A new vector with it components as the sum of two vectors.
+     * @returns A new vector with it components having the sum of two vectors.
      */
     add(other: Vector3D): Vector3D {
-        // if (this != undefined && other != undefined)
-            return new Vector3D(this.buffer[0] + other.x(), this.y() + other.y(), this.z() + other.z());
+        return new Vector3D(this.buffer[0] + other.x(), this.y() + other.y(), this.z() + other.z());
+    }
+
+
+    /**
+     * Perform a component-wise subtraction of this vector from another and returns a new vector.
+     *
+     * @param other The vector to subtract.
+     *
+     * @returns A new vector with it components having the difference of two vectors.
+     */
+    subtract(other: Vector3D): Vector3D {
+        return new Vector3D(this.buffer[0] - other.x(), this.y() - other.y(), this.z() - other.z());
     }
 }
