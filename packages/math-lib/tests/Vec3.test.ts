@@ -163,3 +163,36 @@ describe("Vector3D: Subtraction", () => {
         expect(result).toBe(out)
     })
 })
+
+
+
+describe("Vector3D: Scalar Multiply", () => {
+
+    const vec = new Vec3(3, 1, 6)
+    const scalar = 2
+
+    test("modifies out vector with the result, when vector is multiplied with a scalar", () => {
+        const result = new Vec3()
+        Vec3.multiplyScalar(result, vec, scalar)
+
+        expect(result.x()).toStrictEqual(6)
+        expect(result.y()).toStrictEqual(2)
+        expect(result.z()).toStrictEqual(12)
+    })
+
+    test("does not mutate the vector,  when vector is multiplied with a scalar", () => {
+        const result = new Vec3()
+        Vec3.multiplyScalar(result, vec, scalar)
+
+        expect(vec.x()).toStrictEqual(3)
+        expect(vec.y()).toStrictEqual(1)
+        expect(vec.z()).toStrictEqual(6)
+    })
+
+    test("returns the out vector, when two vectors are added together", () => {
+        const out = new Vec3()
+        const result = Vec3.multiplyScalar(out, vec, scalar)
+
+        expect(result).toBe(out)
+    })
+})

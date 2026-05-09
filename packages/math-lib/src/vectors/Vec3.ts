@@ -115,4 +115,21 @@ export class Vec3 {
         return out;
     }
 
+    /**
+     * Multiply (scale) each component of a vector by a scalar.
+     *
+     * @param out    The vector to store the result the operation.
+     * @param vec    The vector to scale.
+     * @param scalar The scalar to scale the vector.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static multiplyScalar(out: Vec3, vec: Vec3, scalar: number): Vec3 {
+        out.setX(vec.x() * scalar)
+        out.setY(vec.y() * scalar)
+        out.setZ(vec.z() * scalar)
+
+        return out;
+    }
+
 }
