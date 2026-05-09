@@ -33,6 +33,7 @@ describe("Mat3: Instantiation", () => {
     })
 })
 
+
 describe("Mat3: Index based accessor", () => {
     const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
@@ -315,7 +316,7 @@ describe("Mat3: Vector Multiply", () => {
     const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
     const vec = new Vec3(1, 0, 2)
 
-    test("modifies out matrix with the result, when matrix is multiplied with a vector", () => {
+    test("modifies out vector with the result, when matrix is multiplied with a vector", () => {
         const vecRes = new Vec3()
 
         Mat3.multiplyVec(vecRes, mat, vec)
@@ -325,7 +326,7 @@ describe("Mat3: Vector Multiply", () => {
         expect(vecRes.z()).toStrictEqual(25)
     })
 
-    test("do not modify the original matrix, when matrix is multiplied with a vector", () => {
+    test("do not modify the original matrix or vector, when matrix is multiplied with a vector", () => {
 
         const vecRes = new Vec3()
 
@@ -346,7 +347,7 @@ describe("Mat3: Vector Multiply", () => {
         expect(vec.z()).toStrictEqual(2)
     })
 
-    test("returns the out matrix, when matrix is multiplied with a vector", () => {
+    test("returns the out vector, when matrix is multiplied with a vector", () => {
         const vecRes = new Vec3()
 
         const returnedMat = Mat3.multiplyVec(vecRes, mat, vec)

@@ -81,26 +81,38 @@ export class Vec3 {
 
 // TODO: Update to static method to prevent dead object creation
     /**
-     * Perform a component-wise addition of this vector to another and returns a new vector.
+     * Perform a component-wise addition of two vectors and store the result in the out vector.
      *
-     * @param other The vector to add.
+     * @param out The vector to store the result the operation.
+     * @param lhs The first vector to add.
+     * @param rhs The second vector to add.
      *
-     * @returns A new vector with it components having the sum of two vectors.
+     * @returns The out matrix to enable operation composition.
      */
-    add(other: Vec3): Vec3 {
-        return new Vec3(this.buffer[0] + other.x(), this.y() + other.y(), this.z() + other.z());
+    static add(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3 {
+        out.setX(lhs.x() + rhs.x())
+        out.setY(lhs.y() + rhs.y())
+        out.setZ(lhs.z() + rhs.z())
+
+        return out;
     }
 
 
     /**
-     * Perform a component-wise subtraction of this vector from another and returns a new vector.
+     * Perform a component-wise subtraction of two vectors and store the result in the out vector.
      *
-     * @param other The vector to subtract.
+     * @param out The vector to store the result the operation.
+     * @param lhs The first vector to subtract.
+     * @param rhs The second vector to subtract.
      *
-     * @returns A new vector with it components having the difference of two vectors.
+     * @returns The out matrix to enable operation composition.
      */
-    subtract(other: Vec3): Vec3 {
-        return new Vec3(this.buffer[0] - other.x(), this.y() - other.y(), this.z() - other.z());
+    static subtract(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3 {
+        out.setX(lhs.x() - rhs.x())
+        out.setY(lhs.y() - rhs.y())
+        out.setZ(lhs.z() - rhs.z())
+
+        return out;
     }
 
 }

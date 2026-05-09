@@ -1,4 +1,4 @@
-import type {Vec3} from "../vectors/Vec3";
+import type {Vec3} from "../vectors/Vec3.ts";
 
 export class Mat3 {
     public readonly buffer: Float32Array = new Float32Array(9);
@@ -126,8 +126,8 @@ export class Mat3 {
      * Multiply a matrix with another and store the result in the out matrix.
      *
      * @param out The matrix to store the result of the operation.
-     * @param mat The matrix to multiply.
-     * @param scalar The scalar to multiply.
+     * @param lhs The first matrix to multiply.
+     * @param rhs The second matrix to multiply.
      *
      * @returns The out matrix to enable operation composition.
      */
