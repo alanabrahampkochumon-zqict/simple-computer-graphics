@@ -98,7 +98,7 @@ export class Mat3 {
 
 
     /**
-     * Multiply(scale) a matrix by a factor.
+     * Multiply(scale) a matrix by a factor and store the result in the out matrix.
      *
      * @param out The matrix to store the result of the operation.
      * @param mat The matrix to multiply.
@@ -114,6 +114,27 @@ export class Mat3 {
         out.set(2, 0, mat.get(2, 0) * scalar)
         out.set(2, 1, mat.get(2, 1) * scalar)
         out.set(2, 2, mat.get(2, 2) * scalar)
+
+        return out;
+    }
+
+    /**
+     * Multiply a matrix with another and store the result in the out matrix.
+     *
+     * @param out The matrix to store the result of the operation.
+     * @param mat The matrix to multiply.
+     * @param scalar The scalar to multiply.
+     */
+    static multiply(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
+        out.set(0, 0, lhs.get(0, 0) * rhs.get(0, 0) + lhs.get(0, 1) * rhs.get(1, 0) + lhs.get(0, 2) * rhs.get(2, 0))
+        out.set(0, 1, lhs.get(0, 0) * rhs.get(0, 1) + lhs.get(0, 1) * rhs.get(1, 1) + lhs.get(0, 2) * rhs.get(2, 1))
+        out.set(0, 2, lhs.get(0, 0) * rhs.get(0, 2) + lhs.get(0, 1) * rhs.get(1, 2) + lhs.get(0, 2) * rhs.get(2, 2))
+        out.set(1, 0, lhs.get(1, 0) * rhs.get(0, 0) + lhs.get(1, 1) * rhs.get(1, 0) + lhs.get(1, 2) * rhs.get(2, 0))
+        out.set(1, 1, lhs.get(1, 0) * rhs.get(0, 1) + lhs.get(1, 1) * rhs.get(1, 1) + lhs.get(1, 2) * rhs.get(2, 1))
+        out.set(1, 2, lhs.get(1, 0) * rhs.get(0, 2) + lhs.get(1, 1) * rhs.get(1, 2) + lhs.get(1, 2) * rhs.get(2, 2))
+        out.set(2, 0, lhs.get(2, 0) * rhs.get(0, 0) + lhs.get(2, 1) * rhs.get(1, 0) + lhs.get(2, 2) * rhs.get(2, 0))
+        out.set(2, 1, lhs.get(2, 0) * rhs.get(0, 1) + lhs.get(2, 1) * rhs.get(1, 1) + lhs.get(2, 2) * rhs.get(2, 1))
+        out.set(2, 2, lhs.get(2, 0) * rhs.get(0, 2) + lhs.get(2, 1) * rhs.get(1, 2) + lhs.get(2, 2) * rhs.get(2, 2))
 
         return out;
     }
