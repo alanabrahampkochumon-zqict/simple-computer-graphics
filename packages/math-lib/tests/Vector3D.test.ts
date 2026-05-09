@@ -82,3 +82,55 @@ describe("Vector3D: Setters", () => {
     })
 
 })
+
+
+describe("Vector3D: Addition", () => {
+
+    const vec1 = new Vector3D(1, 2, 3)
+    const vec2 = new Vector3D(4, 5, 6)
+
+    test("returns new vector with sum, when two vectors are added together", () => {
+        const result = vec1.add(vec2)
+        expect(result.x()).toStrictEqual(5)
+        expect(result.y()).toStrictEqual(7)
+        expect(result.z()).toStrictEqual(9)
+    })
+
+    test("does not mutate either vectors, when two vectors are added together", () => {
+        vec1.add(vec2)
+
+        expect(vec1.x()).toStrictEqual(1)
+        expect(vec1.y()).toStrictEqual(2)
+        expect(vec1.z()).toStrictEqual(3)
+
+        expect(vec2.x()).toStrictEqual(4)
+        expect(vec2.y()).toStrictEqual(5)
+        expect(vec2.z()).toStrictEqual(6)
+    })
+})
+
+
+describe("Vector3D: Subtraction", () => {
+
+    const vec1 = new Vector3D(4, 3, 9)
+    const vec2 = new Vector3D(1, 2, 3)
+
+    test("returns new vector with sum, when two vectors are added together", () => {
+        const result = vec1.subtract(vec2)
+        expect(result.x()).toStrictEqual(3)
+        expect(result.y()).toStrictEqual(1)
+        expect(result.z()).toStrictEqual(6)
+    })
+
+    test("does not mutate either vectors, when two vectors are subtracted", () => {
+        vec1.subtract(vec2)
+
+        expect(vec1.x()).toStrictEqual(4)
+        expect(vec1.y()).toStrictEqual(3)
+        expect(vec1.z()).toStrictEqual(9)
+
+        expect(vec2.x()).toStrictEqual(1)
+        expect(vec2.y()).toStrictEqual(2)
+        expect(vec2.z()).toStrictEqual(3)
+    })
+})
