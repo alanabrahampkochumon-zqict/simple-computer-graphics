@@ -117,3 +117,59 @@ describe("Mat3: Add", () => {
         expect(returnedMat).toBe(matC)
     })
 })
+
+describe("Mat3: Subtract", () => {
+
+    const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92)
+    const matB = new Mat3(7, 8, 9, 10, 11, 12, 13, 14, 15)
+
+    test("modifies out matrix with the result, when two matrices are subtracted", () => {
+        const matC = new Mat3()
+
+        Mat3.subtract(matC, matA, matB)
+
+        expect(matC.get(0, 0)).toStrictEqual(5)
+        expect(matC.get(0, 1)).toStrictEqual(14)
+        expect(matC.get(0, 2)).toStrictEqual(22)
+        expect(matC.get(1, 0)).toStrictEqual(33)
+        expect(matC.get(1, 1)).toStrictEqual(40)
+        expect(matC.get(1, 2)).toStrictEqual(53)
+        expect(matC.get(2, 0)).toStrictEqual(58)
+        expect(matC.get(2, 1)).toStrictEqual(67)
+        expect(matC.get(2, 2)).toStrictEqual(77)
+    })
+
+    test("do not modify the original matrix, when two matrices are subtracted", () => {
+        const matC = new Mat3()
+
+        Mat3.subtract(matC, matA, matB)
+
+        expect(matA.get(0, 0)).toStrictEqual(12)
+        expect(matA.get(0, 1)).toStrictEqual(22)
+        expect(matA.get(0, 2)).toStrictEqual(31)
+        expect(matA.get(1, 0)).toStrictEqual(43)
+        expect(matA.get(1, 1)).toStrictEqual(51)
+        expect(matA.get(1, 2)).toStrictEqual(65)
+        expect(matA.get(2, 0)).toStrictEqual(71)
+        expect(matA.get(2, 1)).toStrictEqual(81)
+        expect(matA.get(2, 2)).toStrictEqual(92)
+
+        expect(matB.get(0, 0)).toStrictEqual(7)
+        expect(matB.get(0, 1)).toStrictEqual(8)
+        expect(matB.get(0, 2)).toStrictEqual(9)
+        expect(matB.get(1, 0)).toStrictEqual(10)
+        expect(matB.get(1, 1)).toStrictEqual(11)
+        expect(matB.get(1, 2)).toStrictEqual(12)
+        expect(matB.get(2, 0)).toStrictEqual(13)
+        expect(matB.get(2, 1)).toStrictEqual(14)
+        expect(matB.get(2, 2)).toStrictEqual(15)
+    })
+
+    test("returns the out matrix, when two matrices are subtracted", () => {
+        const matC = new Mat3()
+
+        const returnedMat = Mat3.subtract(matC, matA, matB)
+
+        expect(returnedMat).toBe(matC)
+    })
+})

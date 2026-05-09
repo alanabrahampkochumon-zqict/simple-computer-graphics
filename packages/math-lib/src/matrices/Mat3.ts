@@ -54,7 +54,7 @@ export class Mat3 {
     /**
      * Add two matrix together and store the result in the out matrix.
      * @param out The matrix to store the result of the operation.
-     * @param lhs The first to add.
+     * @param lhs The first matrix to add.
      * @param rhs The second matrix to add.
      *
      * @returns The out matrix to enable operation composition.
@@ -69,6 +69,29 @@ export class Mat3 {
         out.set(2, 0, lhs.get(2, 0) + rhs.get(2, 0))
         out.set(2, 1, lhs.get(2, 1) + rhs.get(2, 1))
         out.set(2, 2, lhs.get(2, 2) + rhs.get(2, 2))
+
+        return out;
+    }
+
+
+    /**
+     * Subtract two matrices and store the result in the out matrix.
+     * @param out The matrix to store the result of the operation.
+     * @param lhs The matrix to subtract from.
+     * @param rhs The matrix to subtract.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static subtract(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
+        out.set(0, 0, lhs.get(0, 0) - rhs.get(0, 0))
+        out.set(0, 1, lhs.get(0, 1) - rhs.get(0, 1))
+        out.set(0, 2, lhs.get(0, 2) - rhs.get(0, 2))
+        out.set(1, 0, lhs.get(1, 0) - rhs.get(1, 0))
+        out.set(1, 1, lhs.get(1, 1) - rhs.get(1, 1))
+        out.set(1, 2, lhs.get(1, 2) - rhs.get(1, 2))
+        out.set(2, 0, lhs.get(2, 0) - rhs.get(2, 0))
+        out.set(2, 1, lhs.get(2, 1) - rhs.get(2, 1))
+        out.set(2, 2, lhs.get(2, 2) - rhs.get(2, 2))
 
         return out;
     }
