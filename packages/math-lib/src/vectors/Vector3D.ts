@@ -79,7 +79,7 @@ export class Vector3D {
         return this;
     }
 
-
+// TODO: Update to static method to prevent dead object creation
     /**
      * Perform a component-wise addition of this vector to another and returns a new vector.
      *
