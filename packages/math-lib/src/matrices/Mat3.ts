@@ -1,4 +1,4 @@
-import type {Vector3D} from "../vectors/Vector3D.js";
+import type {Vec3} from "../vectors/Vec3";
 
 export class Mat3 {
     public readonly buffer: Float32Array = new Float32Array(9);
@@ -154,7 +154,7 @@ export class Mat3 {
      *
      * @returns The out matrix to enable operation composition.
      */
-    static multiplyVec(out: Vector3D, mat: Mat3, vec: Vector3D): Vector3D {
+    static multiplyVec(out: Vec3, mat: Mat3, vec: Vec3): Vec3 {
         out.setX(mat.get(0, 0) * vec.x() + mat.get(0, 1) * vec.y() + mat.get(0, 2) * vec.z())
         out.setY(mat.get(1, 0) * vec.x() + mat.get(1, 1) * vec.y() + mat.get(1, 2) * vec.z())
         out.setZ(mat.get(2, 0) * vec.x() + mat.get(2, 1) * vec.y() + mat.get(2, 2) * vec.z())

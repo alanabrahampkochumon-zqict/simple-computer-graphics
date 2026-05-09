@@ -1,19 +1,27 @@
 import { describe, expect, test } from "vitest";
-import {Vector3D} from "../src/vectors/Vector3D";
+import {Vec3} from "../src/vectors/Vec3";
 
 describe("Vector3D: Instantiation", () => {
     test("returns Vector3D initialized with parameters", () => {
-        const vec = new Vector3D(1, 2, 3);
+        const vec = new Vec3(1, 2, 3);
 
         expect(vec.x()).toStrictEqual(1)
         expect(vec.y()).toStrictEqual(2)
         expect(vec.z()).toStrictEqual(3)
     })
+
+    test("returns zero Vector3D, when initialized without parameters", () => {
+        const vec = new Vec3();
+
+        expect(vec.x()).toStrictEqual(0)
+        expect(vec.y()).toStrictEqual(0)
+        expect(vec.z()).toStrictEqual(0)
+    })
 })
 
 
 describe("Vector3D: Getters", () => {
-    const vec = new Vector3D(1, 2, 3);
+    const vec = new Vec3(1, 2, 3);
 
     test("returns the first component, when x() is invoked on the vector", () => {
         expect(vec.x()).toStrictEqual(1);
@@ -30,7 +38,7 @@ describe("Vector3D: Getters", () => {
 
 
 describe("Vector3D: Setters", () => {
-    const vec = new Vector3D(0, 0,0)
+    const vec = new Vec3(0, 0,0)
 
     test("mutates the first component, when setX is called with a value", () => {
         vec.setX(3)
@@ -86,8 +94,8 @@ describe("Vector3D: Setters", () => {
 
 describe("Vector3D: Addition", () => {
 
-    const vec1 = new Vector3D(1, 2, 3)
-    const vec2 = new Vector3D(4, 5, 6)
+    const vec1 = new Vec3(1, 2, 3)
+    const vec2 = new Vec3(4, 5, 6)
 
     test("returns new vector with sum, when two vectors are added together", () => {
         const result = vec1.add(vec2)
@@ -112,8 +120,8 @@ describe("Vector3D: Addition", () => {
 
 describe("Vector3D: Subtraction", () => {
 
-    const vec1 = new Vector3D(4, 3, 9)
-    const vec2 = new Vector3D(1, 2, 3)
+    const vec1 = new Vec3(4, 3, 9)
+    const vec2 = new Vec3(1, 2, 3)
 
     test("returns new vector with sum, when two vectors are added together", () => {
         const result = vec1.subtract(vec2)

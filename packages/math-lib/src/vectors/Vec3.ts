@@ -1,4 +1,4 @@
-export class Vector3D {
+export class Vec3 {
     public readonly buffer: Float32Array = new Float32Array(3);
 
     /**
@@ -50,7 +50,7 @@ export class Vector3D {
      *
      * @returns The current instance to enable chaining.
      */
-    setX(value: number): Vector3D {
+    setX(value: number): Vec3 {
         this.buffer[0] = value;
         return this;
     }
@@ -62,7 +62,7 @@ export class Vector3D {
      *
      * @returns The current instance to enable chaining.
      */
-    setY(value: number): Vector3D {
+    setY(value: number): Vec3 {
         this.buffer[1] = value;
         return this;
     }
@@ -74,7 +74,7 @@ export class Vector3D {
      *
      * @returns The current instance to enable chaining.
      */
-    setZ(value: number): Vector3D {
+    setZ(value: number): Vec3 {
         this.buffer[2] = value;
         return this;
     }
@@ -87,8 +87,8 @@ export class Vector3D {
      *
      * @returns A new vector with it components having the sum of two vectors.
      */
-    add(other: Vector3D): Vector3D {
-        return new Vector3D(this.buffer[0] + other.x(), this.y() + other.y(), this.z() + other.z());
+    add(other: Vec3): Vec3 {
+        return new Vec3(this.buffer[0] + other.x(), this.y() + other.y(), this.z() + other.z());
     }
 
 
@@ -99,8 +99,8 @@ export class Vector3D {
      *
      * @returns A new vector with it components having the difference of two vectors.
      */
-    subtract(other: Vector3D): Vector3D {
-        return new Vector3D(this.buffer[0] - other.x(), this.y() - other.y(), this.z() - other.z());
+    subtract(other: Vec3): Vec3 {
+        return new Vec3(this.buffer[0] - other.x(), this.y() - other.y(), this.z() - other.z());
     }
 
 }

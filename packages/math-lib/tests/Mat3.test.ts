@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
 import {Mat3} from "../src/matrices/Mat3";
-import {Vector3D} from "../src/vectors/Vector3D";
+import {Vec3} from "../src/vectors/Vec3";
 
 describe("Mat3: Instantiation", () => {
 
@@ -16,6 +16,20 @@ describe("Mat3: Instantiation", () => {
         expect(mat.buffer[6]).toStrictEqual(3)
         expect(mat.buffer[7]).toStrictEqual(6)
         expect(mat.buffer[8]).toStrictEqual(9)
+    })
+
+    test("returns identity matrix, when no parameters are passed in to the constructor", () => {
+        const mat = new Mat3()
+
+        expect(mat.buffer[0]).toStrictEqual(1)
+        expect(mat.buffer[1]).toStrictEqual(0)
+        expect(mat.buffer[2]).toStrictEqual(0)
+        expect(mat.buffer[3]).toStrictEqual(0)
+        expect(mat.buffer[4]).toStrictEqual(1)
+        expect(mat.buffer[5]).toStrictEqual(0)
+        expect(mat.buffer[6]).toStrictEqual(0)
+        expect(mat.buffer[7]).toStrictEqual(0)
+        expect(mat.buffer[8]).toStrictEqual(1)
     })
 })
 
@@ -299,10 +313,10 @@ describe("Mat3: Matrix Multiply", () => {
 describe("Mat3: Vector Multiply", () => {
 
     const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    const vec = new Vector3D(1, 0, 2)
+    const vec = new Vec3(1, 0, 2)
 
     test("modifies out matrix with the result, when matrix is multiplied with a vector", () => {
-        const vecRes = new Vector3D()
+        const vecRes = new Vec3()
 
         Mat3.multiplyVec(vecRes, mat, vec)
 
@@ -313,7 +327,7 @@ describe("Mat3: Vector Multiply", () => {
 
     test("do not modify the original matrix, when matrix is multiplied with a vector", () => {
 
-        const vecRes = new Vector3D()
+        const vecRes = new Vec3()
 
         Mat3.multiplyVec(vecRes, mat, vec)
 
@@ -333,7 +347,7 @@ describe("Mat3: Vector Multiply", () => {
     })
 
     test("returns the out matrix, when matrix is multiplied with a vector", () => {
-        const vecRes = new Vector3D()
+        const vecRes = new Vec3()
 
         const returnedMat = Mat3.multiplyVec(vecRes, mat, vec)
 
