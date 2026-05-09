@@ -196,3 +196,35 @@ describe("Vector3D: Scalar Multiply", () => {
         expect(result).toBe(out)
     })
 })
+
+describe("Vector3D: Dot", () => {
+
+    const vec1 = new Vec3(3, 1, 6)
+    const vec2 = new Vec3(1, 2, 3)
+
+    test("returns the scalar product, when computing dot product of two vectors", () => {
+        const result = Vec3.dot(vec1, vec2)
+
+        expect(result).toStrictEqual(23)
+    })
+
+    test("dot product is commutative", () => {
+        const a = Vec3.dot(vec1, vec2)
+        const b = Vec3.dot(vec2, vec1)
+
+        expect(a).toStrictEqual(b)
+    })
+
+    test("does not mutate either vectors, when computing dot product of two vectors", () => {
+        const result = new Vec3()
+        Vec3.subtract(result, vec1, vec2)
+
+        expect(vec1.x()).toStrictEqual(3)
+        expect(vec1.y()).toStrictEqual(1)
+        expect(vec1.z()).toStrictEqual(6)
+
+        expect(vec2.x()).toStrictEqual(1)
+        expect(vec2.y()).toStrictEqual(2)
+        expect(vec2.z()).toStrictEqual(3)
+    })
+})

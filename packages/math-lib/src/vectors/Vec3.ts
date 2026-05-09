@@ -132,4 +132,16 @@ export class Vec3 {
         return out;
     }
 
+
+    /**
+     * Compute the dot product between two vectors.
+     * @param lhs The vector to compute the dot product with.
+     * @param rhs The vector to compute the dot product against.
+     *
+     * @returns The scalar product(dot product) between the two vectors.
+     */
+    static dot(lhs: Vec3, rhs: Vec3): number {
+        return lhs.x() * rhs.x() + lhs.y() * rhs.y() + lhs.z() * rhs.z()
+    }
+
 }
