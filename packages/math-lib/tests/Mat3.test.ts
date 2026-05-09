@@ -60,3 +60,60 @@ describe("Mat3: Index based mutator", () => {
         expect(mat.get(2, 2)).toStrictEqual(9)
     })
 })
+
+
+describe("Mat3: Add", () => {
+
+    const matA = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    const matB = new Mat3(7, 8, 9, 10, 11, 12, 13, 14, 15)
+
+    test("modifies out matrix with the result, when two matrices are added together", () => {
+        const matC = new Mat3()
+
+        Mat3.add(matC, matA, matB)
+
+        expect(matC.get(0, 0)).toStrictEqual(8)
+        expect(matC.get(0, 1)).toStrictEqual(10)
+        expect(matC.get(0, 2)).toStrictEqual(12)
+        expect(matC.get(1, 0)).toStrictEqual(14)
+        expect(matC.get(1, 1)).toStrictEqual(16)
+        expect(matC.get(1, 2)).toStrictEqual(18)
+        expect(matC.get(2, 0)).toStrictEqual(20)
+        expect(matC.get(2, 1)).toStrictEqual(22)
+        expect(matC.get(2, 2)).toStrictEqual(24)
+    })
+
+    test("do not modify the original matrix, when two matrices are added together", () => {
+        const matC = new Mat3()
+
+        Mat3.add(matC, matA, matB)
+
+        expect(matA.get(0, 0)).toStrictEqual(1)
+        expect(matA.get(0, 1)).toStrictEqual(2)
+        expect(matA.get(0, 2)).toStrictEqual(3)
+        expect(matA.get(1, 0)).toStrictEqual(4)
+        expect(matA.get(1, 1)).toStrictEqual(5)
+        expect(matA.get(1, 2)).toStrictEqual(6)
+        expect(matA.get(2, 0)).toStrictEqual(7)
+        expect(matA.get(2, 1)).toStrictEqual(8)
+        expect(matA.get(2, 2)).toStrictEqual(9)
+
+        expect(matB.get(0, 0)).toStrictEqual(7)
+        expect(matB.get(0, 1)).toStrictEqual(8)
+        expect(matB.get(0, 2)).toStrictEqual(9)
+        expect(matB.get(1, 0)).toStrictEqual(10)
+        expect(matB.get(1, 1)).toStrictEqual(11)
+        expect(matB.get(1, 2)).toStrictEqual(12)
+        expect(matB.get(2, 0)).toStrictEqual(13)
+        expect(matB.get(2, 1)).toStrictEqual(14)
+        expect(matB.get(2, 2)).toStrictEqual(15)
+    })
+
+    test("returns the out matrix, when two matrices are added together", () => {
+        const matC = new Mat3()
+
+        const returnedMat = Mat3.add(matC, matA, matB)
+
+        expect(returnedMat).toBe(matC)
+    })
+})
