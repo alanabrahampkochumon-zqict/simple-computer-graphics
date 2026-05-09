@@ -1,5 +1,5 @@
 export class Vector3D {
-    public readonly buffer: Float32Array;
+    public readonly buffer: Float32Array = new Float32Array(3).fill(0);
 
     /**
      * Instantiate a 3D vector with its components.
@@ -8,11 +8,11 @@ export class Vector3D {
      * @param z The z-component.
      */
     constructor(x: number, y: number, z: number) {
-        this.buffer = new Float32Array(3);
         this.buffer[0] = x;
         this.buffer[1] = y;
         this.buffer[2] = z;
     }
+
 
     /**
      * Return the x-component of this vector.
@@ -77,5 +77,18 @@ export class Vector3D {
     setZ(value: number): Vector3D {
         this.buffer[2] = value;
         return this;
+    }
+
+
+    /**
+     * Perform a component-wise addition of this vector to another and returns a new vector.
+     *
+     * @param other The vector to add.
+     *
+     * @returns A new vector with it components as the sum of two vectors.
+     */
+    add(other: Vector3D): Vector3D {
+        // if (this != undefined && other != undefined)
+            return new Vector3D(this.buffer[0] + other.x(), this.y() + other.y(), this.z() + other.z());
     }
 }
