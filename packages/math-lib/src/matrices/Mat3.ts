@@ -2,6 +2,18 @@ export class Mat3 {
     public readonly buffer: Float32Array = new Float32Array(9);
 
 
+    /**
+     * Instantiate a 3D matrix using the provided entries.
+     * @param m00 The element in the first row and first column.
+     * @param m01 The element in the first row and second column.
+     * @param m02 The element in the first row and third column.
+     * @param m10 The element in the second row and first column.
+     * @param m11 The element in the second row and second column.
+     * @param m12 The element in the second row and third column.
+     * @param m20 The element in the third row and first column.
+     * @param m21 The element in the third row and second column.
+     * @param m22 The element in the third row and third column.
+     */
     constructor(m00: number, m01: number, m02: number, m10: number, m11: number, m12: number, m20: number, m21: number, m22: number) {
         this.buffer[0] = m00;
         this.buffer[1] = m10;
@@ -12,5 +24,11 @@ export class Mat3 {
         this.buffer[6] = m02;
         this.buffer[7] = m12;
         this.buffer[8] = m22;
+    }
+
+    get(row: number, col: number) {
+        if(row > 3 || col > 3)
+            throw new Error(`Out of bounds access: (i=${row}, j=${col})`)
+        return this.buffer[row * 3 + col]
     }
 }
