@@ -23,13 +23,40 @@ describe("Mat3: Index based accessor", () => {
 
     test("returns values in a row major order, when accessed using row, col", () => {
         expect(mat.get(0, 0)).toStrictEqual(1)
-        expect(mat.get(0, 1)).toStrictEqual(4)
-        expect(mat.get(0, 2)).toStrictEqual(7)
-        expect(mat.get(1, 0)).toStrictEqual(2)
+        expect(mat.get(0, 1)).toStrictEqual(2)
+        expect(mat.get(0, 2)).toStrictEqual(3)
+        expect(mat.get(1, 0)).toStrictEqual(4)
         expect(mat.get(1, 1)).toStrictEqual(5)
-        expect(mat.get(1, 2)).toStrictEqual(8)
-        expect(mat.get(2, 0)).toStrictEqual(3)
-        expect(mat.get(2, 1)).toStrictEqual(6)
+        expect(mat.get(1, 2)).toStrictEqual(6)
+        expect(mat.get(2, 0)).toStrictEqual(7)
+        expect(mat.get(2, 1)).toStrictEqual(8)
+        expect(mat.get(2, 2)).toStrictEqual(9)
+    })
+})
+
+
+describe("Mat3: Index based mutator", () => {
+    const mat = new Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+    test("mutates values in a row major order, when value is set using row, col", () => {
+        mat.set(0, 0, 1)
+        mat.set(0, 1, 2)
+        mat.set(0, 2, 3)
+        mat.set(1, 0, 4)
+        mat.set(1, 1, 5)
+        mat.set(1, 2, 6)
+        mat.set(2, 0, 7)
+        mat.set(2, 1, 8)
+        mat.set(2, 2, 9)
+
+        expect(mat.get(0, 0)).toStrictEqual(1)
+        expect(mat.get(0, 1)).toStrictEqual(2)
+        expect(mat.get(0, 2)).toStrictEqual(3)
+        expect(mat.get(1, 0)).toStrictEqual(4)
+        expect(mat.get(1, 1)).toStrictEqual(5)
+        expect(mat.get(1, 2)).toStrictEqual(6)
+        expect(mat.get(2, 0)).toStrictEqual(7)
+        expect(mat.get(2, 1)).toStrictEqual(8)
         expect(mat.get(2, 2)).toStrictEqual(9)
     })
 })

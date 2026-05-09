@@ -26,9 +26,27 @@ export class Mat3 {
         this.buffer[8] = m22;
     }
 
+    /**
+     * Returns the element at row, col index of the matrix.
+     * @param row The target row of the element.
+     * @param col The target column of the element.
+     */
     get(row: number, col: number) {
         if(row > 3 || col > 3)
             throw new Error(`Out of bounds access: (i=${row}, j=${col})`)
-        return this.buffer[row * 3 + col]
+        return this.buffer[col * 3 + row]
+    }
+
+
+    /**
+     * Put an element at row, col index of the matrix.
+     * @param row The target row.
+     * @param col The target column.
+     * @param value The element to put at the target index.
+     */
+    set(row: number, col: number, value: number) {
+        if(row > 3 || col > 3)
+            throw new Error(`Out of bounds access: (i=${row}, j=${col})`)
+        return this.buffer[col * 3 + row] = value;
     }
 }
