@@ -1,3 +1,5 @@
+import type {Vector3D} from "../vectors/Vector3D.js";
+
 export class Mat3 {
     public readonly buffer: Float32Array = new Float32Array(9);
 
@@ -103,6 +105,8 @@ export class Mat3 {
      * @param out The matrix to store the result of the operation.
      * @param mat The matrix to multiply.
      * @param scalar The scalar to multiply.
+     *
+     * @returns The out matrix to enable operation composition.
      */
     static multiplyScalar(out: Mat3, mat: Mat3, scalar: number): Mat3 {
         out.set(0, 0, mat.get(0, 0) * scalar)
@@ -124,6 +128,8 @@ export class Mat3 {
      * @param out The matrix to store the result of the operation.
      * @param mat The matrix to multiply.
      * @param scalar The scalar to multiply.
+     *
+     * @returns The out matrix to enable operation composition.
      */
     static multiply(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
         out.set(0, 0, lhs.get(0, 0) * rhs.get(0, 0) + lhs.get(0, 1) * rhs.get(1, 0) + lhs.get(0, 2) * rhs.get(2, 0))
@@ -136,6 +142,22 @@ export class Mat3 {
         out.set(2, 1, lhs.get(2, 0) * rhs.get(0, 1) + lhs.get(2, 1) * rhs.get(1, 1) + lhs.get(2, 2) * rhs.get(2, 1))
         out.set(2, 2, lhs.get(2, 0) * rhs.get(0, 2) + lhs.get(2, 1) * rhs.get(1, 2) + lhs.get(2, 2) * rhs.get(2, 2))
 
+        return out;
+    }
+
+
+    /**
+     * Multiply a matrix with a vector to perform a linear transformation.
+     * @param out The matrix to store the result of the operation.
+     * @param mat The matrix to multiply.
+     * @param vec The vector to multiply.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static multiplyVec(out: Vector3D, mat: Mat3, vec: Vector3D): Vector3D {
+        out.setX(mat.get(0, 0) * vec.x() + mat.get(0, 1) * vec.y() + mat.get(0, 2) * vec.z())
+        out.setY(mat.get(1, 0) * vec.x() + mat.get(1, 1) * vec.y() + mat.get(1, 2) * vec.z())
+        out.setZ(mat.get(2, 0) * vec.x() + mat.get(2, 1) * vec.y() + mat.get(2, 2) * vec.z())
         return out;
     }
 

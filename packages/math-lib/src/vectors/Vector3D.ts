@@ -7,7 +7,7 @@ export class Vector3D {
      * @param y The y-component.
      * @param z The z-component.
      */
-    constructor(x: number, y: number, z: number) {
+    constructor(x: number = 0, y: number = 0, z: number = 0) {
         this.buffer[0] = x;
         this.buffer[1] = y;
         this.buffer[2] = z;

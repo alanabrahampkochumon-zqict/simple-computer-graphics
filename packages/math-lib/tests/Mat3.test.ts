@@ -1,5 +1,6 @@
 import {describe, expect, test} from "vitest";
 import {Mat3} from "../src/matrices/Mat3";
+import {Vector3D} from "../src/vectors/Vector3D";
 
 describe("Mat3: Instantiation", () => {
 
@@ -175,7 +176,7 @@ describe("Mat3: Subtract", () => {
 })
 
 
-describe("Mat3: Multiply", () => {
+describe("Mat3: Scalar Multiply", () => {
 
     const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92)
     const scalar = 2
@@ -222,12 +223,12 @@ describe("Mat3: Multiply", () => {
 })
 
 
-describe("Mat3: Multiply", () => {
+describe("Mat3: Matrix Multiply", () => {
 
     const matA = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
     const matB = new Mat3(10, 11, 12, 13, 14, 15, 16, 17, 18)
 
-    test("modifies out matrix with the result, when matrix is multiplied with a scalar", () => {
+    test("modifies out matrix with the result, when matrix is multiplied with a matrix", () => {
         const matC = new Mat3()
 
         Mat3.multiply(matC, matA, matB)
@@ -259,7 +260,7 @@ describe("Mat3: Multiply", () => {
         expect(matC.get(2, 2)).toStrictEqual(312)
     })
 
-    test("do not modify the original matrix, when matrix is multiplied with a scalar", () => {
+    test("do not modify the original matrix, when matrix is multiplied with a matrix", () => {
         const matC = new Mat3()
 
         Mat3.multiply(matC, matA, matB)
@@ -285,11 +286,57 @@ describe("Mat3: Multiply", () => {
         expect(matB.get(2, 2)).toStrictEqual(18)
     })
 
-    test("returns the out matrix, when matrix is multiplied with a scalar", () => {
+    test("returns the out matrix, when matrix is multiplied with a matrix", () => {
         const matC = new Mat3()
 
         const returnedMat = Mat3.multiply(matC, matA, matB)
 
         expect(returnedMat).toBe(matC)
+    })
+})
+
+
+describe("Mat3: Vector Multiply", () => {
+
+    const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    const vec = new Vector3D(1, 0, 2)
+
+    test("modifies out matrix with the result, when matrix is multiplied with a vector", () => {
+        const vecRes = new Vector3D()
+
+        Mat3.multiplyVec(vecRes, mat, vec)
+
+        expect(vecRes.x()).toStrictEqual(7)
+        expect(vecRes.y()).toStrictEqual(16)
+        expect(vecRes.z()).toStrictEqual(25)
+    })
+
+    test("do not modify the original matrix, when matrix is multiplied with a vector", () => {
+
+        const vecRes = new Vector3D()
+
+        Mat3.multiplyVec(vecRes, mat, vec)
+
+        expect(mat.get(0, 0)).toStrictEqual(1)
+        expect(mat.get(0, 1)).toStrictEqual(2)
+        expect(mat.get(0, 2)).toStrictEqual(3)
+        expect(mat.get(1, 0)).toStrictEqual(4)
+        expect(mat.get(1, 1)).toStrictEqual(5)
+        expect(mat.get(1, 2)).toStrictEqual(6)
+        expect(mat.get(2, 0)).toStrictEqual(7)
+        expect(mat.get(2, 1)).toStrictEqual(8)
+        expect(mat.get(2, 2)).toStrictEqual(9)
+
+        expect(vec.x()).toStrictEqual(1)
+        expect(vec.y()).toStrictEqual(0)
+        expect(vec.z()).toStrictEqual(2)
+    })
+
+    test("returns the out matrix, when matrix is multiplied with a vector", () => {
+        const vecRes = new Vector3D()
+
+        const returnedMat = Mat3.multiplyVec(vecRes, mat, vec)
+
+        expect(returnedMat).toBe(vecRes)
     })
 })
