@@ -135,6 +135,7 @@ export class Vec3 {
 
     /**
      * Compute the dot product between two vectors.
+     *
      * @param lhs The vector to compute the dot product with.
      * @param rhs The vector to compute the dot product against.
      *
@@ -142,6 +143,24 @@ export class Vec3 {
      */
     static dot(lhs: Vec3, rhs: Vec3): number {
         return lhs.x() * rhs.x() + lhs.y() * rhs.y() + lhs.z() * rhs.z()
+    }
+
+
+    /**
+     * Compute the dot product between two vectors.
+     *
+     * @param out The vector to store the result the operation.
+     * @param lhs The first vector to compute the cross product.
+     * @param rhs The second vector to compute the cross product.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static cross(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3  {
+        out.setX(lhs.y() * rhs.z() - lhs.z() * rhs.y())
+        out.setY(lhs.z() * rhs.x() - lhs.x() * rhs.z())
+        out.setZ(lhs.x() * rhs.y() - lhs.y() * rhs.x())
+
+        return out;
     }
 
 }

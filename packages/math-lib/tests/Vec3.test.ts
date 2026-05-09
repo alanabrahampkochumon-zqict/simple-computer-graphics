@@ -156,7 +156,7 @@ describe("Vector3D: Subtraction", () => {
         expect(vec2.z()).toStrictEqual(3)
     })
 
-    test("returns the out vector, when two vectors are added together", () => {
+    test("returns the out vector, when two vectors are subtracted", () => {
         const out = new Vec3()
         const result = Vec3.subtract(out, vec1, vec2)
 
@@ -216,8 +216,7 @@ describe("Vector3D: Dot", () => {
     })
 
     test("does not mutate either vectors, when computing dot product of two vectors", () => {
-        const result = new Vec3()
-        Vec3.subtract(result, vec1, vec2)
+        Vec3.dot(vec1, vec2)
 
         expect(vec1.x()).toStrictEqual(3)
         expect(vec1.y()).toStrictEqual(1)
@@ -226,5 +225,51 @@ describe("Vector3D: Dot", () => {
         expect(vec2.x()).toStrictEqual(1)
         expect(vec2.y()).toStrictEqual(2)
         expect(vec2.z()).toStrictEqual(3)
+    })
+})
+
+describe("Vector3D: Cross", () => {
+
+    const vec1 = new Vec3(3, 1, 6)
+    const vec2 = new Vec3(1, 2, 3)
+
+    test("returns the vector product, when computing cross product of two vectors", () => {
+        const out = new Vec3()
+        Vec3.cross(out, vec1, vec2)
+
+        expect(out.x()).toStrictEqual(-9)
+        expect(out.y()).toStrictEqual(-3)
+        expect(out.z()).toStrictEqual(5)
+    })
+
+    test("cross product is anticommutative", () => {
+        const out1 = new Vec3()
+        const out2 = new Vec3()
+        Vec3.cross(out1, vec1, vec2)
+        Vec3.cross(out2, vec2, vec1)
+
+        expect(out1.x()).toStrictEqual(out2.x() * -1)
+        expect(out1.y()).toStrictEqual(out2.y() * -1)
+        expect(out1.z()).toStrictEqual(out2.z() * -1)
+    })
+
+    test("does not mutate either vectors, when computing cross product of two vectors", () => {
+        const out = new Vec3()
+        Vec3.cross(out, vec1, vec2)
+
+        expect(vec1.x()).toStrictEqual(3)
+        expect(vec1.y()).toStrictEqual(1)
+        expect(vec1.z()).toStrictEqual(6)
+
+        expect(vec2.x()).toStrictEqual(1)
+        expect(vec2.y()).toStrictEqual(2)
+        expect(vec2.z()).toStrictEqual(3)
+    })
+
+    test("returns the out vector, when computing cross product of two vectors", () => {
+        const out = new Vec3()
+        const result = Vec3.subtract(out, vec1, vec2)
+
+        expect(result).toBe(out)
     })
 })
