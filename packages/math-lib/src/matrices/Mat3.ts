@@ -1,8 +1,12 @@
-import type {Vec3} from "../vectors/Vec3.ts";
+import type { Vec3 } from "../vectors/Vec3.ts";
 
+/**
+ * Definition of a 3x3 square matrix.
+ *
+ * @export
+ */
 export class Mat3 {
     public readonly buffer: Float32Array = new Float32Array(9);
-
 
     /**
      * Instantiate a 3D matrix using the provided entries.
@@ -16,7 +20,17 @@ export class Mat3 {
      * @param m21 The element in the third row and second column.
      * @param m22 The element in the third row and third column.
      */
-    constructor(m00: number = 1, m01: number = 0, m02: number = 0, m10: number = 0, m11: number = 1, m12: number = 0, m20: number = 0, m21: number = 0, m22: number = 1) {
+    constructor(
+        m00: number = 1,
+        m01: number = 0,
+        m02: number = 0,
+        m10: number = 0,
+        m11: number = 1,
+        m12: number = 0,
+        m20: number = 0,
+        m21: number = 0,
+        m22: number = 1,
+    ) {
         this.buffer[0] = m00;
         this.buffer[1] = m10;
         this.buffer[2] = m20;
@@ -35,10 +49,9 @@ export class Mat3 {
      */
     get(row: number, col: number) {
         if (row > 3 || col > 3)
-            throw new Error(`Out of bounds access: (i=${row}, j=${col})`)
-        return this.buffer[col * 3 + row]
+            throw new Error(`Out of bounds access: (i=${row}, j=${col})`);
+        return this.buffer[col * 3 + row];
     }
-
 
     /**
      * Put an element at row, col index of the matrix.
@@ -48,10 +61,9 @@ export class Mat3 {
      */
     set(row: number, col: number, value: number) {
         if (row > 3 || col > 3)
-            throw new Error(`Out of bounds access: (i=${row}, j=${col})`)
-        return this.buffer[col * 3 + row] = value;
+            throw new Error(`Out of bounds access: (i=${row}, j=${col})`);
+        return (this.buffer[col * 3 + row] = value);
     }
-
 
     /**
      * Add two matrix together and store the result in the out matrix.
@@ -62,19 +74,18 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static add(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
-        out.set(0, 0, lhs.get(0, 0) + rhs.get(0, 0))
-        out.set(0, 1, lhs.get(0, 1) + rhs.get(0, 1))
-        out.set(0, 2, lhs.get(0, 2) + rhs.get(0, 2))
-        out.set(1, 0, lhs.get(1, 0) + rhs.get(1, 0))
-        out.set(1, 1, lhs.get(1, 1) + rhs.get(1, 1))
-        out.set(1, 2, lhs.get(1, 2) + rhs.get(1, 2))
-        out.set(2, 0, lhs.get(2, 0) + rhs.get(2, 0))
-        out.set(2, 1, lhs.get(2, 1) + rhs.get(2, 1))
-        out.set(2, 2, lhs.get(2, 2) + rhs.get(2, 2))
+        out.set(0, 0, lhs.get(0, 0) + rhs.get(0, 0));
+        out.set(0, 1, lhs.get(0, 1) + rhs.get(0, 1));
+        out.set(0, 2, lhs.get(0, 2) + rhs.get(0, 2));
+        out.set(1, 0, lhs.get(1, 0) + rhs.get(1, 0));
+        out.set(1, 1, lhs.get(1, 1) + rhs.get(1, 1));
+        out.set(1, 2, lhs.get(1, 2) + rhs.get(1, 2));
+        out.set(2, 0, lhs.get(2, 0) + rhs.get(2, 0));
+        out.set(2, 1, lhs.get(2, 1) + rhs.get(2, 1));
+        out.set(2, 2, lhs.get(2, 2) + rhs.get(2, 2));
 
         return out;
     }
-
 
     /**
      * Subtract two matrices and store the result in the out matrix.
@@ -85,19 +96,18 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static subtract(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
-        out.set(0, 0, lhs.get(0, 0) - rhs.get(0, 0))
-        out.set(0, 1, lhs.get(0, 1) - rhs.get(0, 1))
-        out.set(0, 2, lhs.get(0, 2) - rhs.get(0, 2))
-        out.set(1, 0, lhs.get(1, 0) - rhs.get(1, 0))
-        out.set(1, 1, lhs.get(1, 1) - rhs.get(1, 1))
-        out.set(1, 2, lhs.get(1, 2) - rhs.get(1, 2))
-        out.set(2, 0, lhs.get(2, 0) - rhs.get(2, 0))
-        out.set(2, 1, lhs.get(2, 1) - rhs.get(2, 1))
-        out.set(2, 2, lhs.get(2, 2) - rhs.get(2, 2))
+        out.set(0, 0, lhs.get(0, 0) - rhs.get(0, 0));
+        out.set(0, 1, lhs.get(0, 1) - rhs.get(0, 1));
+        out.set(0, 2, lhs.get(0, 2) - rhs.get(0, 2));
+        out.set(1, 0, lhs.get(1, 0) - rhs.get(1, 0));
+        out.set(1, 1, lhs.get(1, 1) - rhs.get(1, 1));
+        out.set(1, 2, lhs.get(1, 2) - rhs.get(1, 2));
+        out.set(2, 0, lhs.get(2, 0) - rhs.get(2, 0));
+        out.set(2, 1, lhs.get(2, 1) - rhs.get(2, 1));
+        out.set(2, 2, lhs.get(2, 2) - rhs.get(2, 2));
 
         return out;
     }
-
 
     /**
      * Multiply(scale) a matrix by a factor and store the result in the out matrix.
@@ -109,15 +119,15 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static multiplyScalar(out: Mat3, mat: Mat3, scalar: number): Mat3 {
-        out.set(0, 0, mat.get(0, 0) * scalar)
-        out.set(0, 1, mat.get(0, 1) * scalar)
-        out.set(0, 2, mat.get(0, 2) * scalar)
-        out.set(1, 0, mat.get(1, 0) * scalar)
-        out.set(1, 1, mat.get(1, 1) * scalar)
-        out.set(1, 2, mat.get(1, 2) * scalar)
-        out.set(2, 0, mat.get(2, 0) * scalar)
-        out.set(2, 1, mat.get(2, 1) * scalar)
-        out.set(2, 2, mat.get(2, 2) * scalar)
+        out.set(0, 0, mat.get(0, 0) * scalar);
+        out.set(0, 1, mat.get(0, 1) * scalar);
+        out.set(0, 2, mat.get(0, 2) * scalar);
+        out.set(1, 0, mat.get(1, 0) * scalar);
+        out.set(1, 1, mat.get(1, 1) * scalar);
+        out.set(1, 2, mat.get(1, 2) * scalar);
+        out.set(2, 0, mat.get(2, 0) * scalar);
+        out.set(2, 1, mat.get(2, 1) * scalar);
+        out.set(2, 2, mat.get(2, 2) * scalar);
 
         return out;
     }
@@ -132,19 +142,72 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static multiply(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
-        out.set(0, 0, lhs.get(0, 0) * rhs.get(0, 0) + lhs.get(0, 1) * rhs.get(1, 0) + lhs.get(0, 2) * rhs.get(2, 0))
-        out.set(0, 1, lhs.get(0, 0) * rhs.get(0, 1) + lhs.get(0, 1) * rhs.get(1, 1) + lhs.get(0, 2) * rhs.get(2, 1))
-        out.set(0, 2, lhs.get(0, 0) * rhs.get(0, 2) + lhs.get(0, 1) * rhs.get(1, 2) + lhs.get(0, 2) * rhs.get(2, 2))
-        out.set(1, 0, lhs.get(1, 0) * rhs.get(0, 0) + lhs.get(1, 1) * rhs.get(1, 0) + lhs.get(1, 2) * rhs.get(2, 0))
-        out.set(1, 1, lhs.get(1, 0) * rhs.get(0, 1) + lhs.get(1, 1) * rhs.get(1, 1) + lhs.get(1, 2) * rhs.get(2, 1))
-        out.set(1, 2, lhs.get(1, 0) * rhs.get(0, 2) + lhs.get(1, 1) * rhs.get(1, 2) + lhs.get(1, 2) * rhs.get(2, 2))
-        out.set(2, 0, lhs.get(2, 0) * rhs.get(0, 0) + lhs.get(2, 1) * rhs.get(1, 0) + lhs.get(2, 2) * rhs.get(2, 0))
-        out.set(2, 1, lhs.get(2, 0) * rhs.get(0, 1) + lhs.get(2, 1) * rhs.get(1, 1) + lhs.get(2, 2) * rhs.get(2, 1))
-        out.set(2, 2, lhs.get(2, 0) * rhs.get(0, 2) + lhs.get(2, 1) * rhs.get(1, 2) + lhs.get(2, 2) * rhs.get(2, 2))
+        out.set(
+            0,
+            0,
+            lhs.get(0, 0) * rhs.get(0, 0) +
+                lhs.get(0, 1) * rhs.get(1, 0) +
+                lhs.get(0, 2) * rhs.get(2, 0),
+        );
+        out.set(
+            0,
+            1,
+            lhs.get(0, 0) * rhs.get(0, 1) +
+                lhs.get(0, 1) * rhs.get(1, 1) +
+                lhs.get(0, 2) * rhs.get(2, 1),
+        );
+        out.set(
+            0,
+            2,
+            lhs.get(0, 0) * rhs.get(0, 2) +
+                lhs.get(0, 1) * rhs.get(1, 2) +
+                lhs.get(0, 2) * rhs.get(2, 2),
+        );
+        out.set(
+            1,
+            0,
+            lhs.get(1, 0) * rhs.get(0, 0) +
+                lhs.get(1, 1) * rhs.get(1, 0) +
+                lhs.get(1, 2) * rhs.get(2, 0),
+        );
+        out.set(
+            1,
+            1,
+            lhs.get(1, 0) * rhs.get(0, 1) +
+                lhs.get(1, 1) * rhs.get(1, 1) +
+                lhs.get(1, 2) * rhs.get(2, 1),
+        );
+        out.set(
+            1,
+            2,
+            lhs.get(1, 0) * rhs.get(0, 2) +
+                lhs.get(1, 1) * rhs.get(1, 2) +
+                lhs.get(1, 2) * rhs.get(2, 2),
+        );
+        out.set(
+            2,
+            0,
+            lhs.get(2, 0) * rhs.get(0, 0) +
+                lhs.get(2, 1) * rhs.get(1, 0) +
+                lhs.get(2, 2) * rhs.get(2, 0),
+        );
+        out.set(
+            2,
+            1,
+            lhs.get(2, 0) * rhs.get(0, 1) +
+                lhs.get(2, 1) * rhs.get(1, 1) +
+                lhs.get(2, 2) * rhs.get(2, 1),
+        );
+        out.set(
+            2,
+            2,
+            lhs.get(2, 0) * rhs.get(0, 2) +
+                lhs.get(2, 1) * rhs.get(1, 2) +
+                lhs.get(2, 2) * rhs.get(2, 2),
+        );
 
         return out;
     }
-
 
     /**
      * Multiply a matrix with a vector to perform a linear transformation.
@@ -155,13 +218,45 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static multiplyVec(out: Vec3, mat: Mat3, vec: Vec3): Vec3 {
-        out.setX(mat.get(0, 0) * vec.x() + mat.get(0, 1) * vec.y() + mat.get(0, 2) * vec.z())
-        out.setY(mat.get(1, 0) * vec.x() + mat.get(1, 1) * vec.y() + mat.get(1, 2) * vec.z())
-        out.setZ(mat.get(2, 0) * vec.x() + mat.get(2, 1) * vec.y() + mat.get(2, 2) * vec.z())
+        out.setX(
+            mat.get(0, 0) * vec.x() +
+                mat.get(0, 1) * vec.y() +
+                mat.get(0, 2) * vec.z(),
+        );
+        out.setY(
+            mat.get(1, 0) * vec.x() +
+                mat.get(1, 1) * vec.y() +
+                mat.get(1, 2) * vec.z(),
+        );
+        out.setZ(
+            mat.get(2, 0) * vec.x() +
+                mat.get(2, 1) * vec.y() +
+                mat.get(2, 2) * vec.z(),
+        );
         return out;
     }
 
+    /**
+     * Divide a matrix by a factor and store the result in the out matrix.
+     *
+     * @param out The matrix to store the result of the operation.
+     * @param mat The matrix to divide.
+     * @param scalar The scalar to divide by.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static div(out: Mat3, mat: Mat3, scalar: number): Mat3 {
+        const factor = 1 / scalar;
+        out.set(0, 0, mat.get(0, 0) * factor);
+        out.set(0, 1, mat.get(0, 1) * factor);
+        out.set(0, 2, mat.get(0, 2) * factor);
+        out.set(1, 0, mat.get(1, 0) * factor);
+        out.set(1, 1, mat.get(1, 1) * factor);
+        out.set(1, 2, mat.get(1, 2) * factor);
+        out.set(2, 0, mat.get(2, 0) * factor);
+        out.set(2, 1, mat.get(2, 1) * factor);
+        out.set(2, 2, mat.get(2, 2) * factor);
 
-
-
+        return out;
+    }
 }
