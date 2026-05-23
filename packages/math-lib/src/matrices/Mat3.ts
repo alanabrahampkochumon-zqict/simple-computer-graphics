@@ -1,3 +1,4 @@
+import { fixedW } from "../lib/Utils.js";
 import type { Vec3 } from "../vectors/Vec3.ts";
 
 /**
@@ -40,6 +41,17 @@ export class Mat3 {
         this.buffer[6] = m02;
         this.buffer[7] = m12;
         this.buffer[8] = m22;
+    }
+
+    /**
+     * Return a string representation of this matrix.
+     */
+    toString() {
+        return `
+        | ${fixedW(this.buffer[0])}, ${fixedW(this.buffer[3])}, ${fixedW(this.buffer[6])} |
+        | ${fixedW(this.buffer[1])}, ${fixedW(this.buffer[4])}, ${fixedW(this.buffer[7])} |
+        | ${fixedW(this.buffer[2])}, ${fixedW(this.buffer[5])}, ${fixedW(this.buffer[8])} |
+        `;
     }
 
     /**
