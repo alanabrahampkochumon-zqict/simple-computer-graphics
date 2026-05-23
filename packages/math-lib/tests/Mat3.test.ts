@@ -431,3 +431,44 @@ describe("Mat3: Determinants", () => {
         },
     );
 });
+
+describe("Mat3: Inverse", () => {
+    const singularMatrices = [
+        new Mat3(1, 0, 1, 1, 0, 1, 2, 3, 4),
+        new Mat3(1, 1, 1, 3, 4, 5, 1, 1, 1),
+        new Mat3(1, 2, 3, 1, 2, 4, 1, 2, 5),
+        new Mat3(0, 0, 0, 1, 2, 3, 4, 5, 6),
+        new Mat3(0, 1, 2, 0, 3, 4, 0, 5, 6),
+    ];
+    const mat = new Mat3(1, 0, 2, 2, -1, 3, 4, 1, 8);
+
+    test("returns non-zero matrix for non-singular matrix", () => {
+        const invMat = new Mat3();
+
+        Mat3.inv(invMat, mat);
+
+        expect(invMat.get(0, 0)).toStrictEqual(-11);
+        expect(invMat.get(0, 1)).toStrictEqual(2);
+        expect(invMat.get(0, 2)).toStrictEqual(2);
+        expect(invMat.get(1, 0)).toStrictEqual(-4);
+        expect(invMat.get(1, 1)).toStrictEqual(0);
+        expect(invMat.get(1, 2)).toStrictEqual(1);
+        expect(invMat.get(2, 0)).toStrictEqual(6);
+        expect(invMat.get(2, 1)).toStrictEqual(-1);
+        expect(invMat.get(2, 2)).toStrictEqual(-1);
+    });
+
+    test("returns the output matrix, when inverting a non-singular matrix", () => {
+        const matC = new Mat3();
+        const matD = Mat3.inv(matC, mat);
+
+        expect(matC).toBe(matD);
+    });
+
+    test.each(singularMatrices)(
+        "return null matrix when inverting singular matrix (%o)",
+        (mat) => {
+            expect(Mat3.inv(new Mat3(), mat)).toBeNull();
+        },
+    );
+});

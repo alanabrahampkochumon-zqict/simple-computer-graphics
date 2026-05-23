@@ -273,7 +273,7 @@ export class Mat3 {
     }
 
     /**
-     * Transpose a matrix by exchanging its rows and columns.
+     * Transpose a matrix by exchanging its rows and columns and store the result in the out matrix.
      *
      * @param out The matrix to store the result of the transposition.
      * @param mat The matrix to transpose.
@@ -302,15 +302,61 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static det(mat: Mat3): number {
-        return (
-            mat.get(0, 0) *
-                (mat.get(1, 1) * mat.get(2, 2) -
-                    mat.get(2, 1) * mat.get(1, 2)) -
-            mat.get(0, 1) *
-                (mat.get(1, 0) * mat.get(2, 2) -
-                    mat.get(2, 0) * mat.get(1, 2)) +
-            mat.get(0, 2) *
-                (mat.get(1, 0) * mat.get(2, 1) - mat.get(2, 0) * mat.get(1, 1))
-        );
+        const bM = mat.buffer;
+
+        const t00 = bM[4] * bM[8] - bM[5] * bM[7];
+        const t01 = bM[1] * bM[8] - bM[2] * bM[7];
+        const t02 = bM[1] * bM[5] - bM[2] * bM[4];
+
+        return bM[0] * t00 - bM[3] * t01 + bM[6] * t02;
+    }
+
+    /**
+     * Take the inverse of the given matrix and store the result in the out matrix.
+     *
+     * @param out The matrix to store the result of the transposition.
+     * @param mat The matrix to transpose.
+     *
+     * @returns The out matrix to enable operation composition,
+     *          or null if a singular matrix is provided.
+     */
+    static inv(out: Mat3, mat: Mat3): Mat3 | null {
+        // First 3 cofactors
+        const bM = mat.buffer;
+        const bO = out.buffer;
+
+        const m00 = bM[0],
+            m10 = bM[1],
+            m20 = bM[2];
+        const m01 = bM[3],
+            m11 = bM[4],
+            m21 = bM[5];
+        const m02 = bM[6],
+            m12 = bM[7],
+            m22 = bM[8];
+
+        const c00 = m11 * m22 - m12 * m21;
+        const c01 = m12 * m20 - m10 * m22;
+        const c02 = m10 * m21 - m11 * m20;
+
+        const det = m00 * c00 + m01 * c01 + m02 * c02;
+
+        if (det === 0) return null;
+
+        const invDet = 1 / det;
+
+        bO[0] = c00 * invDet;
+        bO[1] = c01 * invDet;
+        bO[2] = c02 * invDet;
+
+        bO[3] = (m02 * m21 - m01 * m22) * invDet;
+        bO[4] = (m00 * m22 - m02 * m20) * invDet;
+        bO[5] = (m01 * m20 - m00 * m21) * invDet;
+
+        bO[6] = (m01 * m12 - m02 * m11) * invDet;
+        bO[7] = (m02 * m10 - m00 * m12) * invDet;
+        bO[8] = (m00 * m11 - m01 * m10) * invDet;
+        
+        return out;
     }
 }
