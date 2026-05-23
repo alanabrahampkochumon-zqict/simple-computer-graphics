@@ -375,4 +375,37 @@ describe("Mat3: Scalar Divide", () => {
         expect(matC.get(2, 1)).toStrictEqual(8);
         expect(matC.get(2, 2)).toStrictEqual(9);
     });
+
+    test("returns the output matrix, when divided by scalar", () => {
+        const matC = new Mat3();
+        const matD = Mat3.div(matC, matA, 2);
+
+        expect(matC).toBe(matD);
+    });
+});
+
+describe("Mat3: Transpose", () => {
+    const matA = new Mat3(2, 4, 6, 8, 10, 12, 14, 16, 18);
+    test("returns a matrix with rows and columns exchanged, when transposing", () => {
+        const matC = new Mat3();
+
+        Mat3.transpose(matC, matA);
+
+        expect(matC.get(0, 0)).toStrictEqual(matA.get(0, 0));
+        expect(matC.get(0, 1)).toStrictEqual(matA.get(1, 0));
+        expect(matC.get(0, 2)).toStrictEqual(matA.get(2, 0));
+        expect(matC.get(1, 0)).toStrictEqual(matA.get(0, 1));
+        expect(matC.get(1, 1)).toStrictEqual(matA.get(1, 1));
+        expect(matC.get(1, 2)).toStrictEqual(matA.get(2, 1));
+        expect(matC.get(2, 0)).toStrictEqual(matA.get(0, 2));
+        expect(matC.get(2, 1)).toStrictEqual(matA.get(1, 2));
+        expect(matC.get(2, 2)).toStrictEqual(matA.get(2, 2));
+    });
+
+    test("returns the output matrix, when taking transpose of a matrix", () => {
+        const matC = new Mat3();
+        const matD = Mat3.transpose(matC, matA);
+
+        expect(matC).toBe(matD);
+    });
 });

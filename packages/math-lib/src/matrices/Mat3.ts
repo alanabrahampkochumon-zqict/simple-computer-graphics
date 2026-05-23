@@ -259,4 +259,26 @@ export class Mat3 {
 
         return out;
     }
+
+    /**
+     * Transpose a matrix by exchanging its rows and columns.
+     *
+     * @param out The matrix to store the result of the transposition.
+     * @param mat The matrix to transpose.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static transpose(out: Mat3, mat: Mat3): Mat3 {
+        out.set(0, 0, mat.get(0, 0));
+        out.set(0, 1, mat.get(1, 0));
+        out.set(0, 2, mat.get(2, 0));
+        out.set(1, 0, mat.get(0, 1));
+        out.set(1, 1, mat.get(1, 1));
+        out.set(1, 2, mat.get(2, 1));
+        out.set(2, 0, mat.get(0, 2));
+        out.set(2, 1, mat.get(1, 2));
+        out.set(2, 2, mat.get(2, 2));
+
+        return out;
+    }
 }
