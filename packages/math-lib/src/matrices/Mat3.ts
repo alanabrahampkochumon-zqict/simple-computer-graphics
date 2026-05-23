@@ -281,4 +281,24 @@ export class Mat3 {
 
         return out;
     }
+
+    /**
+     * Return the determinant of this matrix.
+     *
+     * @param mat The matrix to take the determinant of.
+     *
+     * @returns The out matrix to enable operation composition.
+     */
+    static det(mat: Mat3): number {
+        return (
+            mat.get(0, 0) *
+                (mat.get(1, 1) * mat.get(2, 2) -
+                    mat.get(2, 1) * mat.get(1, 2)) -
+            mat.get(0, 1) *
+                (mat.get(1, 0) * mat.get(2, 2) -
+                    mat.get(2, 0) * mat.get(1, 2)) +
+            mat.get(0, 2) *
+                (mat.get(1, 0) * mat.get(2, 1) - mat.get(2, 0) * mat.get(1, 1))
+        );
+    }
 }

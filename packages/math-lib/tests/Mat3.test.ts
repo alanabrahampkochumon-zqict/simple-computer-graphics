@@ -409,3 +409,25 @@ describe("Mat3: Transpose", () => {
         expect(matC).toBe(matD);
     });
 });
+
+describe("Mat3: Determinants", () => {
+    const singularMatrices = [
+        new Mat3(1, 0, 1, 1, 0, 1, 2, 3, 4),
+        new Mat3(1, 1, 1, 3, 4, 5, 1, 1, 1),
+        new Mat3(1, 2, 3, 1, 2, 4, 1, 2, 5),
+        new Mat3(0, 0, 0, 1, 2, 3, 4, 5, 6),
+        new Mat3(0, 1, 2, 0, 3, 4, 0, 5, 6),
+    ];
+
+    test("returns non-zero determinant for non-singular matrix", () => {
+        const mat = new Mat3(2, -1, 3, 1, 0, 4, -2, 1, 5);
+        expect(Mat3.det(mat)).toStrictEqual(8);
+    });
+
+    test.each(singularMatrices)(
+        "return zero determinant for singular matrix (%o)",
+        (mat) => {
+            expect(Mat3.det(mat)).toStrictEqual(0);
+        },
+    );
+});
