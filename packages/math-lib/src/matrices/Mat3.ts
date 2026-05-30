@@ -300,6 +300,13 @@ export class Mat3 {
         return out;
     }
 
+    /**
+     * Create a 3D transformation matrix for counter-clockwise rotation around X-axis.
+     *
+     * @param radian The rotation angle specified in radians.
+     *
+     * @returns A new Mat3 instance representing a non-affine 3D rotation matrix.
+     */
     static rotX(radian: number): Mat3 {
         const sinX = Math.sin(radian)
         const cosX = Math.cos(radian)
@@ -310,6 +317,13 @@ export class Mat3 {
         )
     }
 
+    /**
+     * Create a 3D transformation matrix for counter-clockwise rotation around Y-axis.
+     *
+     * @param radian The rotation angle specified in radians.
+     *
+     * @returns A new Mat3 instance representing a non-affine 3D rotation matrix.
+     */
     static rotY(radian: number): Mat3 {
         const sinX = Math.sin(radian)
         const cosX = Math.cos(radian)
@@ -320,6 +334,13 @@ export class Mat3 {
         )
     }
 
+    /**
+     * Create a 3D transformation matrix for counter-clockwise rotation around Z-axis.
+     *
+     * @param radian The rotation angle specified in radians.
+     *
+     * @returns A new Mat3 instance representing a non-affine 3D rotation matrix.
+     */
     static rotZ(radian: number): Mat3 {
         const sinX = Math.sin(radian)
         const cosX = Math.cos(radian)
@@ -330,6 +351,13 @@ export class Mat3 {
         )
     }
 
+    /**
+     * Create a 3x3 2D affine transformation matrix for a counter-clockwise rotation.
+     *
+     * @param radian The rotation angle specified in radians.
+     *
+     * @returns A new Mat3 instance representing the 2D rotation matrix.
+     */
     static rotAffine2D(radian: number): Mat3 {
         const sinX = Math.sin(radian)
         const cosX = Math.cos(radian)
@@ -339,4 +367,26 @@ export class Mat3 {
             0, 0, 1
         )
     }
+
+    /**
+     * Create a 3x3 scale transformation matrix.
+     *
+     * @param x Scale in the x-axis.
+     *          Default: 1
+     * @param y Scale in the y-axis.
+     *          Default: 1
+     * @param z Scale in the z-axis.
+     *          Default: 1
+     *
+     * @returns A new Mat3 instance representing a scale matrix.
+     */
+    static scale(x: number = 1, y: number = 1, z: number = 1): Mat3 {
+        return new Mat3(
+            x, 0, 0,
+            0, y, 0,
+            0, 0, z
+        )
+    }
+
+
 }

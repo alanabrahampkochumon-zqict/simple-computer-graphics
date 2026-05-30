@@ -1,6 +1,6 @@
-import { describe, expect, test } from "vitest";
-import { Mat3 } from "../src/matrices/Mat3";
-import { Vec3 } from "../src/vectors/Vec3";
+import {describe, expect, test} from "vitest";
+import {Mat3} from "../src/matrices/Mat3";
+import {Vec3} from "../src/vectors/Vec3";
 
 describe("Mat3: Instantiation", () => {
     test("returns 3D matrix initialized with parameters in column major order", () => {
@@ -476,18 +476,18 @@ describe("Mat3: Inverse", () => {
 describe("Mat3: RotationX", () => {
     const pi = Math.PI
     const testCases: Record<number, Mat3>[] = [
-        {0: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1)},
-        {[pi / 2]: new Mat3(1, 0, 0,  0, 0, -1,  0, 1, 0)},
-        {[-pi / 2]: new Mat3(1, 0, 0,  0, 0, 1,  0, -1, 0)},
-        {[pi]: new Mat3(1, 0, 0,  0, -1, 0,  0, 0, -1)},
-        {[2 * pi]: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1)}
+        {0: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)},
+        {[pi / 2]: new Mat3(1, 0, 0, 0, 0, -1, 0, 1, 0)},
+        {[-pi / 2]: new Mat3(1, 0, 0, 0, 0, 1, 0, -1, 0)},
+        {[pi]: new Mat3(1, 0, 0, 0, -1, 0, 0, 0, -1)},
+        {[2 * pi]: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)}
     ];
 
     test.each(testCases)("return correct Mat3 for angle %s", (testPack) => {
         const [angle, expectedMatrix] = Object.entries(testPack)[0]
         const rotMat = Mat3.rotX(parseFloat(angle))
 
-        for(let i = 0; i < 9; ++i) {
+        for (let i = 0; i < 9; ++i) {
             expect(rotMat.buffer[i]).toBeCloseTo(expectedMatrix.buffer[i], 5)
         }
     })
@@ -497,18 +497,18 @@ describe("Mat3: RotationX", () => {
 describe("Mat3: RotationY", () => {
     const pi = Math.PI
     const testCases: Record<number, Mat3>[] = [
-        { 0: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) },
-        { [pi / 2]: new Mat3(0, 0, 1,  0, 1, 0,  -1, 0, 0) },
-        { [-pi / 2]: new Mat3(0, 0, -1,  0, 1, 0,  1, 0, 0) },
-        { [pi]: new Mat3(-1, 0, 0,  0, 1, 0,  0, 0, -1) },
-        { [2 * pi]: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) }
+        {0: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)},
+        {[pi / 2]: new Mat3(0, 0, 1, 0, 1, 0, -1, 0, 0)},
+        {[-pi / 2]: new Mat3(0, 0, -1, 0, 1, 0, 1, 0, 0)},
+        {[pi]: new Mat3(-1, 0, 0, 0, 1, 0, 0, 0, -1)},
+        {[2 * pi]: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)}
     ];
 
     test.each(testCases)("return correct Mat3 for angle %s", (testPack) => {
         const [angle, expectedMatrix] = Object.entries(testPack)[0]
         const rotMat = Mat3.rotY(parseFloat(angle))
 
-        for(let i = 0; i < 9; ++i) {
+        for (let i = 0; i < 9; ++i) {
             expect(rotMat.buffer[i]).toBeCloseTo(expectedMatrix.buffer[i], 5)
         }
     })
@@ -519,18 +519,18 @@ describe("Mat3: RotationY", () => {
 describe("Mat3: RotationZ", () => {
     const pi = Math.PI
     const testCases: Record<number, Mat3>[] = [
-        { 0: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) },
-        { [pi / 2]: new Mat3(0, -1, 0,  1, 0, 0,  0, 0, 1) },
-        { [-pi / 2]: new Mat3(0, 1, 0,  -1, 0, 0,  0, 0, 1) },
-        { [pi]: new Mat3(-1, 0, 0,  0, -1, 0,  0, 0, 1) },
-        { [2 * pi]: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) }
+        {0: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)},
+        {[pi / 2]: new Mat3(0, -1, 0, 1, 0, 0, 0, 0, 1)},
+        {[-pi / 2]: new Mat3(0, 1, 0, -1, 0, 0, 0, 0, 1)},
+        {[pi]: new Mat3(-1, 0, 0, 0, -1, 0, 0, 0, 1)},
+        {[2 * pi]: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)}
     ];
 
     test.each(testCases)("return correct Mat3 for angle %s", (testPack) => {
         const [angle, expectedMatrix] = Object.entries(testPack)[0]
         const rotMat = Mat3.rotZ(parseFloat(angle))
 
-        for(let i = 0; i < 9; ++i) {
+        for (let i = 0; i < 9; ++i) {
             expect(rotMat.buffer[i]).toBeCloseTo(expectedMatrix.buffer[i], 5)
         }
     })
@@ -540,19 +540,69 @@ describe("Mat3: RotationZ", () => {
 describe("Mat3: RotationAffine2D", () => {
     const pi = Math.PI
     const testCases: Record<number, Mat3>[] = [
-        { 0: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) },
-        { [pi / 2]: new Mat3(0, -1, 0,  1, 0, 0,  0, 0, 1) },
-        { [-pi / 2]: new Mat3(0, 1, 0,  -1, 0, 0,  0, 0, 1) },
-        { [pi]: new Mat3(-1, 0, 0,  0, -1, 0,  0, 0, 1) },
-        { [2 * pi]: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) }
+        {0: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)},
+        {[pi / 2]: new Mat3(0, -1, 0, 1, 0, 0, 0, 0, 1)},
+        {[-pi / 2]: new Mat3(0, 1, 0, -1, 0, 0, 0, 0, 1)},
+        {[pi]: new Mat3(-1, 0, 0, 0, -1, 0, 0, 0, 1)},
+        {[2 * pi]: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)}
     ];
 
     test.each(testCases)("return correct Mat3 for angle %s", (testPack) => {
         const [angle, expectedMatrix] = Object.entries(testPack)[0]
         const rotMat = Mat3.rotAffine2D(parseFloat(angle))
 
-        for(let i = 0; i < 9; ++i) {
+        for (let i = 0; i < 9; ++i) {
             expect(rotMat.buffer[i]).toBeCloseTo(expectedMatrix.buffer[i], 5)
+        }
+    })
+})
+
+describe("Mat3: Scale", () => {
+    const pi = Math.PI
+
+    const testCases: Record<"value" | "target", (number | undefined)[] | Mat3>[] = [
+        {
+            value: [1, 1, 1],
+            target: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)
+        },
+        {
+            value: [4, 2, 3],
+            target: new Mat3(4, 0, 0, 0, 2, 0, 0, 0, 3)
+        },
+        {
+            value: [undefined, 2, 3],
+            target: new Mat3(1, 0, 0, 0, 2, 0, 0, 0, 3)
+        },
+        {
+            value: [4, undefined, 3],
+            target: new Mat3(4, 0, 0, 0, 1, 0, 0, 0, 3)
+        },
+        {
+            value: [4, 2, undefined],
+            target: new Mat3(4, 0, 0, 0, 2, 0, 0, 0, 1)
+        },
+        {
+            value: [undefined, undefined, 3],
+            target: new Mat3(1, 0, 0, 0, 1, 0, 0, 0, 3)
+        },
+        {
+            value: [4, undefined, undefined],
+            target: new Mat3(4, 0, 0, 0, 1, 0, 0, 0, 1)
+        },
+        {
+            value: [undefined, 2, undefined],
+            target: new Mat3(1, 0, 0, 0, 2, 0, 0, 0, 1)
+        },
+
+    ];
+
+    test.each(testCases)("return correct Mat3 for scale %s", (testPack) => {
+        const scalePack = testPack["value"] as (number | undefined)[]
+        const targetMatrix = testPack["target"] as Mat3
+        const scaleMat = Mat3.scale(scalePack[0], scalePack[1], scalePack[2])
+
+        for (let i = 0; i < 9; ++i) {
+            expect(scaleMat.buffer[i]).toBeCloseTo(targetMatrix.buffer[i], 5)
         }
     })
 })
