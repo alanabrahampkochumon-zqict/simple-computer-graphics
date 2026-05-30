@@ -558,7 +558,6 @@ describe("Mat3: RotationAffine2D", () => {
 })
 
 describe("Mat3: Scale", () => {
-    const pi = Math.PI
 
     const testCases: Record<"value" | "target", (number | undefined)[] | Mat3>[] = [
         {
@@ -603,6 +602,44 @@ describe("Mat3: Scale", () => {
 
         for (let i = 0; i < 9; ++i) {
             expect(scaleMat.buffer[i]).toBeCloseTo(targetMatrix.buffer[i], 5)
+        }
+    })
+})
+
+
+
+describe("Mat3: Translation2D", () => {
+
+    const testCases: Record<"value" | "target", (number | undefined)[] | Mat3>[] = [
+        {
+            value: [1, 1],
+            target: new Mat3(1, 0, 1, 0, 1, 1, 0, 0, 1)
+        },
+        {
+            value: [4, 2],
+            target: new Mat3(1, 0, 4, 0, 1, 2, 0, 0, 1)
+        },
+        {
+            value: [-4, 2],
+            target: new Mat3(1, 0, -4, 0, 1, 2, 0, 0, 1)
+        },
+        {
+            value: [4, -2],
+            target: new Mat3(1, 0, 4, 0, 1, -2, 0, 0, 1)
+        },
+        {
+            value: [-4, -2],
+            target: new Mat3(1, 0, -4, 0, 1, -2, 0, 0, 1)
+        },
+    ];
+
+    test.each(testCases)("return correct Mat3 for translation %s", (testPack) => {
+        const translationPack = testPack["value"] as (number | undefined)[]
+        const targetMatrix = testPack["target"] as Mat3
+        const translationMat = Mat3.translate2D(translationPack[0], translationPack[1])
+
+        for (let i = 0; i < 9; ++i) {
+            expect(translationMat.buffer[i]).toBeCloseTo(targetMatrix.buffer[i], 5)
         }
     })
 })

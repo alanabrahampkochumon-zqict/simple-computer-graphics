@@ -369,16 +369,13 @@ export class Mat3 {
     }
 
     /**
-     * Create a 3x3 scale transformation matrix.
+     * Create a 3x3 3D scale transformation matrix.
      *
-     * @param x Scale in the x-axis.
-     *          Default: 1
-     * @param y Scale in the y-axis.
-     *          Default: 1
-     * @param z Scale in the z-axis.
-     *          Default: 1
+     * @param [x=1] The scale factor along the x-axis.
+     * @param [y=1] The scale factor along the y-axis.
+     * @param [z=1] The scale factor along the z-axis.
      *
-     * @returns A new Mat3 instance representing a scale matrix.
+     * @returns A new Mat3 instance representing the scale transformation.
      */
     static scale(x: number = 1, y: number = 1, z: number = 1): Mat3 {
         return new Mat3(
@@ -388,5 +385,19 @@ export class Mat3 {
         )
     }
 
-
+    /**
+     * Create a 3x3 2D affine translation matrix.
+     *
+     * @param x The translation distance along the x-axis.
+     * @param y The translation distance along the y-axis.
+     *
+     * @returns A new Mat3 instance representing the 2D translation.
+     */
+    static translate2D(x: number, y: number): Mat3 {
+        return new Mat3(
+            1, 0, x,
+            0, 1, y,
+            0, 0, 1
+        )
+    }
 }
