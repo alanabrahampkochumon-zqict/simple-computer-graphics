@@ -17,3 +17,14 @@ export function fixedW(
 ) {
     return num.toFixed(decimalWidth).padStart(frontPadding, fillString);
 }
+
+
+/**
+ * Convert an angle from degrees to radians.
+ *
+ * @param degrees The angle measured in degrees.
+ * @returns The corresponding angle measured in radians.
+ */
+export function toRadians(angle: number): number {
+    return (angle / 360) * (2 * Math.PI)
+}
