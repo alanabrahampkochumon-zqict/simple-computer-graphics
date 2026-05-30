@@ -1,4 +1,5 @@
-import type { BlendingMode } from "./BlendingModes";
+import type {BlendingMode} from "./BlendingModes";
+import type {Mat3} from "@falcon-ts/math-lib/src";
 
 export class Layer {
     blendingMode: BlendingMode = "Normal"; // The blending mode for the current layer.
@@ -6,7 +7,7 @@ export class Layer {
     opacity: number; // The transparency of the layer.
     visible: boolean; // Whether layer is visible on canvas, and finally in export.
     stackOrder: number; // Layer order
-    transform: any; // TOOD: Type // The transformation matrix of the layer.
+    transform: Mat3; // The transformation matrix of the layer.
 
     constructor(
         originalImage: ImageBitmap,

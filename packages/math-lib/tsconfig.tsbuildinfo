@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/lib/utils.ts","./src/matrices/mat3.ts","./src/vectors/vec3.ts"],"version":"5.9.3"}
