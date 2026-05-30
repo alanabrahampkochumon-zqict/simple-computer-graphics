@@ -28,3 +28,14 @@ export function fixedW(
 export function toRadians(angle: number): number {
     return (angle / 360) * (2 * Math.PI)
 }
+
+
+/**
+ * Convert an angle from radians to degrees.
+ *
+ * @param degrees The angle measured in radians.
+ * @returns The corresponding angle measured in degrees.
+ */
+export function toDegrees(angle: number): number {
+    return angle / (2 * Math.PI) * 360
+}
