@@ -299,4 +299,34 @@ export class Mat3 {
 
         return out;
     }
+
+    static rotationX(radian: number): Mat3 {
+        const sinX = Math.sin(radian)
+        const cosX = Math.cos(radian)
+        return new Mat3(
+            1, 0, 0,
+            0, cosX, -sinX,
+            0, sinX, cosX,
+        )
+    }
+
+    // static rotationY(radian: number): Mat3 {
+    //     const sinX = Math.sin(radian)
+    //     const cosX = Math.cos(radian)
+    //     return new Mat3(
+    //         cosX, 0, sinX,
+    //         0, 1, 0,
+    //         -sinX, 0, cosX
+    //     )
+    // }
+    //
+    // static rotationZ(radian: number): Mat3 {
+    //     const sinX = Math.sin(radian)
+    //     const cosX = Math.cos(radian)
+    //     return new Mat3(
+    //         cosX, -sinX, 0,
+    //         sinX, cosX, 0,
+    //         0, 0, 1
+    //     )
+    }
 }
