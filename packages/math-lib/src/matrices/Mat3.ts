@@ -1,5 +1,5 @@
-import { fixedW } from "../lib/Utils.js";
-import type { Vec3 } from "../vectors/Vec3.ts";
+import {fixedW} from "../lib/Utils.js";
+import type {Vec3} from "../vectors/Vec3.ts";
 
 /**
  * Definition of a 3x3 square matrix.
@@ -221,15 +221,15 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static transpose(out: Mat3, mat: Mat3): Mat3 {
-        out.set(0, 0, mat.get(0, 0));
-        out.set(0, 1, mat.get(1, 0));
-        out.set(0, 2, mat.get(2, 0));
-        out.set(1, 0, mat.get(0, 1));
-        out.set(1, 1, mat.get(1, 1));
-        out.set(1, 2, mat.get(2, 1));
-        out.set(2, 0, mat.get(0, 2));
-        out.set(2, 1, mat.get(1, 2));
-        out.set(2, 2, mat.get(2, 2));
+        out.buffer[0] = mat.buffer[0]
+        out.buffer[1] = mat.buffer[3]
+        out.buffer[2] = mat.buffer[6]
+        out.buffer[3] = mat.buffer[1]
+        out.buffer[4] = mat.buffer[4]
+        out.buffer[5] = mat.buffer[7]
+        out.buffer[6] = mat.buffer[2]
+        out.buffer[7] = mat.buffer[5]
+        out.buffer[8] = mat.buffer[8]
 
         return out;
     }
