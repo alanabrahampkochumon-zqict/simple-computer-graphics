@@ -132,15 +132,15 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static multiply(out: Mat3, lhs: Mat3, rhs: Mat3): Mat3 {
-        out.set(0, 0, lhs.get(0, 0) * rhs.get(0, 0) + lhs.get(0, 1) * rhs.get(1, 0) + lhs.get(0, 2) * rhs.get(2, 0))
-        out.set(0, 1, lhs.get(0, 0) * rhs.get(0, 1) + lhs.get(0, 1) * rhs.get(1, 1) + lhs.get(0, 2) * rhs.get(2, 1))
-        out.set(0, 2, lhs.get(0, 0) * rhs.get(0, 2) + lhs.get(0, 1) * rhs.get(1, 2) + lhs.get(0, 2) * rhs.get(2, 2))
-        out.set(1, 0, lhs.get(1, 0) * rhs.get(0, 0) + lhs.get(1, 1) * rhs.get(1, 0) + lhs.get(1, 2) * rhs.get(2, 0))
-        out.set(1, 1, lhs.get(1, 0) * rhs.get(0, 1) + lhs.get(1, 1) * rhs.get(1, 1) + lhs.get(1, 2) * rhs.get(2, 1))
-        out.set(1, 2, lhs.get(1, 0) * rhs.get(0, 2) + lhs.get(1, 1) * rhs.get(1, 2) + lhs.get(1, 2) * rhs.get(2, 2))
-        out.set(2, 0, lhs.get(2, 0) * rhs.get(0, 0) + lhs.get(2, 1) * rhs.get(1, 0) + lhs.get(2, 2) * rhs.get(2, 0))
-        out.set(2, 1, lhs.get(2, 0) * rhs.get(0, 1) + lhs.get(2, 1) * rhs.get(1, 1) + lhs.get(2, 2) * rhs.get(2, 1))
-        out.set(2, 2, lhs.get(2, 0) * rhs.get(0, 2) + lhs.get(2, 1) * rhs.get(1, 2) + lhs.get(2, 2) * rhs.get(2, 2))
+        out.buffer[0] = lhs.buffer[0] * rhs.buffer[0] + lhs.buffer[3] * rhs.buffer[1] + lhs.buffer[6] * rhs.buffer[2];
+        out.buffer[1] = lhs.buffer[1] * rhs.buffer[0] + lhs.buffer[4] * rhs.buffer[1] + lhs.buffer[7] * rhs.buffer[2];
+        out.buffer[2] = lhs.buffer[2] * rhs.buffer[0] + lhs.buffer[5] * rhs.buffer[1] + lhs.buffer[8] * rhs.buffer[2];
+        out.buffer[3] = lhs.buffer[0] * rhs.buffer[3] + lhs.buffer[3] * rhs.buffer[4] + lhs.buffer[6] * rhs.buffer[5];
+        out.buffer[4] = lhs.buffer[1] * rhs.buffer[3] + lhs.buffer[4] * rhs.buffer[4] + lhs.buffer[7] * rhs.buffer[5];
+        out.buffer[5] = lhs.buffer[2] * rhs.buffer[3] + lhs.buffer[5] * rhs.buffer[4] + lhs.buffer[8] * rhs.buffer[5];
+        out.buffer[6] = lhs.buffer[0] * rhs.buffer[6] + lhs.buffer[3] * rhs.buffer[7] + lhs.buffer[6] * rhs.buffer[8];
+        out.buffer[7] = lhs.buffer[1] * rhs.buffer[6] + lhs.buffer[4] * rhs.buffer[7] + lhs.buffer[7] * rhs.buffer[8];
+        out.buffer[8] = lhs.buffer[2] * rhs.buffer[6] + lhs.buffer[5] * rhs.buffer[7] + lhs.buffer[8] * rhs.buffer[8];
 
         return out;
     }
@@ -155,9 +155,9 @@ export class Mat3 {
      * @returns The out matrix to enable operation composition.
      */
     static multiplyVec(out: Vec3, mat: Mat3, vec: Vec3): Vec3 {
-        out.setX(mat.get(0, 0) * vec.x() + mat.get(0, 1) * vec.y() + mat.get(0, 2) * vec.z())
-        out.setY(mat.get(1, 0) * vec.x() + mat.get(1, 1) * vec.y() + mat.get(1, 2) * vec.z())
-        out.setZ(mat.get(2, 0) * vec.x() + mat.get(2, 1) * vec.y() + mat.get(2, 2) * vec.z())
+        out.buffer[0] = mat.buffer[0] * vec.buffer[0] + mat.buffer[3] * vec.buffer[1] + mat.buffer[6] * vec.buffer[2];
+        out.buffer[1] = mat.buffer[1] * vec.buffer[0] + mat.buffer[4] * vec.buffer[1] + mat.buffer[7] * vec.buffer[2];
+        out.buffer[2] = mat.buffer[2] * vec.buffer[0] + mat.buffer[5] * vec.buffer[1] + mat.buffer[8] * vec.buffer[2];
         return out;
     }
 
