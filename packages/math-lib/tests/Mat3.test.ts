@@ -514,3 +514,25 @@ describe("Mat3: RotationY", () => {
     })
 
 })
+
+
+describe("Mat3: RotationZ", () => {
+    const pi = Math.PI
+    const testCases: Record<number, Mat3>[] = [
+        { 0: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) },
+        { [pi / 2]: new Mat3(0, -1, 0,  1, 0, 0,  0, 0, 1) },
+        { [-pi / 2]: new Mat3(0, 1, 0,  -1, 0, 0,  0, 0, 1) },
+        { [pi]: new Mat3(-1, 0, 0,  0, -1, 0,  0, 0, 1) },
+        { [2 * pi]: new Mat3(1, 0, 0,  0, 1, 0,  0, 0, 1) }
+    ];
+
+    test.each(testCases)("return correct Mat3 for angle %s", (testPack) => {
+        const [angle, expectedMatrix] = Object.entries(testPack)[0]
+        const rotMat = Mat3.rotationZ(parseFloat(angle))
+
+        for(let i = 0; i < 9; ++i) {
+            expect(rotMat.buffer[i]).toBeCloseTo(expectedMatrix.buffer[i], 5)
+        }
+    })
+
+})
