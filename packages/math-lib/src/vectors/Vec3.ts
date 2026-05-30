@@ -79,7 +79,7 @@ export class Vec3 {
         return this;
     }
 
-// TODO: Update to static method to prevent dead object creation
+
     /**
      * Perform a component-wise addition of two vectors and store the result in the out vector.
      *
@@ -90,9 +90,9 @@ export class Vec3 {
      * @returns The out matrix to enable operation composition.
      */
     static add(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3 {
-        out.setX(lhs.x() + rhs.x())
-        out.setY(lhs.y() + rhs.y())
-        out.setZ(lhs.z() + rhs.z())
+        out.buffer[0] = lhs.buffer[0] + rhs.buffer[0]
+        out.buffer[1] = lhs.buffer[1] + rhs.buffer[1]
+        out.buffer[2] = lhs.buffer[2] + rhs.buffer[2]
 
         return out;
     }
@@ -108,9 +108,9 @@ export class Vec3 {
      * @returns The out matrix to enable operation composition.
      */
     static subtract(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3 {
-        out.setX(lhs.x() - rhs.x())
-        out.setY(lhs.y() - rhs.y())
-        out.setZ(lhs.z() - rhs.z())
+        out.buffer[0] = lhs.buffer[0] - rhs.buffer[0]
+        out.buffer[1] = lhs.buffer[1] - rhs.buffer[1]
+        out.buffer[2] = lhs.buffer[2] - rhs.buffer[2]
 
         return out;
     }
@@ -125,9 +125,9 @@ export class Vec3 {
      * @returns The out matrix to enable operation composition.
      */
     static multiplyScalar(out: Vec3, vec: Vec3, scalar: number): Vec3 {
-        out.setX(vec.x() * scalar)
-        out.setY(vec.y() * scalar)
-        out.setZ(vec.z() * scalar)
+        out.buffer[0] = vec.buffer[0] * scalar;
+        out.buffer[1] = vec.buffer[1] * scalar;
+        out.buffer[2] = vec.buffer[2] * scalar;
 
         return out;
     }
@@ -142,7 +142,7 @@ export class Vec3 {
      * @returns The scalar product(dot product) between the two vectors.
      */
     static dot(lhs: Vec3, rhs: Vec3): number {
-        return lhs.x() * rhs.x() + lhs.y() * rhs.y() + lhs.z() * rhs.z()
+        return lhs.buffer[0] * rhs.buffer[0] + lhs.buffer[1] * rhs.buffer[1] + lhs.buffer[2] * rhs.buffer[2]
     }
 
 
@@ -155,10 +155,10 @@ export class Vec3 {
      *
      * @returns The out matrix to enable operation composition.
      */
-    static cross(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3  {
-        out.setX(lhs.y() * rhs.z() - lhs.z() * rhs.y())
-        out.setY(lhs.z() * rhs.x() - lhs.x() * rhs.z())
-        out.setZ(lhs.x() * rhs.y() - lhs.y() * rhs.x())
+    static cross(out: Vec3, lhs: Vec3, rhs: Vec3): Vec3 {
+        out.buffer[0] = lhs.buffer[1] * rhs.buffer[2] - lhs.buffer[2] * rhs.buffer[1]
+        out.buffer[1] = lhs.buffer[2] * rhs.buffer[0] - lhs.buffer[0] * rhs.buffer[2]
+        out.buffer[2] = lhs.buffer[0] * rhs.buffer[1] - lhs.buffer[1] * rhs.buffer[0]
 
         return out;
     }
