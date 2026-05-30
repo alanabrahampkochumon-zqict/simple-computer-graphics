@@ -310,16 +310,16 @@ export class Mat3 {
         )
     }
 
-    // static rotationY(radian: number): Mat3 {
-    //     const sinX = Math.sin(radian)
-    //     const cosX = Math.cos(radian)
-    //     return new Mat3(
-    //         cosX, 0, sinX,
-    //         0, 1, 0,
-    //         -sinX, 0, cosX
-    //     )
-    // }
-    //
+    static rotationY(radian: number): Mat3 {
+        const sinX = Math.sin(radian)
+        const cosX = Math.cos(radian)
+        return new Mat3(
+            cosX, 0, sinX,
+            0, 1, 0,
+            -sinX, 0, cosX
+        )
+    }
+
     // static rotationZ(radian: number): Mat3 {
     //     const sinX = Math.sin(radian)
     //     const cosX = Math.cos(radian)
@@ -328,5 +328,5 @@ export class Mat3 {
     //         sinX, cosX, 0,
     //         0, 0, 1
     //     )
-    }
+    // }
 }
