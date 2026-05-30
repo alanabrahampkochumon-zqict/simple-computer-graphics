@@ -1,357 +1,474 @@
-import {describe, expect, test} from "vitest";
-import {Mat3} from "../src/matrices/Mat3";
-import {Vec3} from "../src/vectors/Vec3";
+import { describe, expect, test } from "vitest";
+import { Mat3 } from "../src/matrices/Mat3";
+import { Vec3 } from "../src/vectors/Vec3";
 
 describe("Mat3: Instantiation", () => {
-
     test("returns 3D matrix initialized with parameters in column major order", () => {
-        const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
+        const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-        expect(mat.buffer[0]).toStrictEqual(1)
-        expect(mat.buffer[1]).toStrictEqual(4)
-        expect(mat.buffer[2]).toStrictEqual(7)
-        expect(mat.buffer[3]).toStrictEqual(2)
-        expect(mat.buffer[4]).toStrictEqual(5)
-        expect(mat.buffer[5]).toStrictEqual(8)
-        expect(mat.buffer[6]).toStrictEqual(3)
-        expect(mat.buffer[7]).toStrictEqual(6)
-        expect(mat.buffer[8]).toStrictEqual(9)
-    })
+        expect(mat.buffer[0]).toStrictEqual(1);
+        expect(mat.buffer[1]).toStrictEqual(4);
+        expect(mat.buffer[2]).toStrictEqual(7);
+        expect(mat.buffer[3]).toStrictEqual(2);
+        expect(mat.buffer[4]).toStrictEqual(5);
+        expect(mat.buffer[5]).toStrictEqual(8);
+        expect(mat.buffer[6]).toStrictEqual(3);
+        expect(mat.buffer[7]).toStrictEqual(6);
+        expect(mat.buffer[8]).toStrictEqual(9);
+    });
 
     test("returns identity matrix, when no parameters are passed in to the constructor", () => {
-        const mat = new Mat3()
+        const mat = new Mat3();
 
-        expect(mat.buffer[0]).toStrictEqual(1)
-        expect(mat.buffer[1]).toStrictEqual(0)
-        expect(mat.buffer[2]).toStrictEqual(0)
-        expect(mat.buffer[3]).toStrictEqual(0)
-        expect(mat.buffer[4]).toStrictEqual(1)
-        expect(mat.buffer[5]).toStrictEqual(0)
-        expect(mat.buffer[6]).toStrictEqual(0)
-        expect(mat.buffer[7]).toStrictEqual(0)
-        expect(mat.buffer[8]).toStrictEqual(1)
-    })
-})
-
+        expect(mat.buffer[0]).toStrictEqual(1);
+        expect(mat.buffer[1]).toStrictEqual(0);
+        expect(mat.buffer[2]).toStrictEqual(0);
+        expect(mat.buffer[3]).toStrictEqual(0);
+        expect(mat.buffer[4]).toStrictEqual(1);
+        expect(mat.buffer[5]).toStrictEqual(0);
+        expect(mat.buffer[6]).toStrictEqual(0);
+        expect(mat.buffer[7]).toStrictEqual(0);
+        expect(mat.buffer[8]).toStrictEqual(1);
+    });
+});
 
 describe("Mat3: Index based accessor", () => {
-    const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
     test("returns values in a row major order, when accessed using row, col", () => {
-        expect(mat.get(0, 0)).toStrictEqual(1)
-        expect(mat.get(0, 1)).toStrictEqual(2)
-        expect(mat.get(0, 2)).toStrictEqual(3)
-        expect(mat.get(1, 0)).toStrictEqual(4)
-        expect(mat.get(1, 1)).toStrictEqual(5)
-        expect(mat.get(1, 2)).toStrictEqual(6)
-        expect(mat.get(2, 0)).toStrictEqual(7)
-        expect(mat.get(2, 1)).toStrictEqual(8)
-        expect(mat.get(2, 2)).toStrictEqual(9)
-    })
-})
-
+        expect(mat.get(0, 0)).toStrictEqual(1);
+        expect(mat.get(0, 1)).toStrictEqual(2);
+        expect(mat.get(0, 2)).toStrictEqual(3);
+        expect(mat.get(1, 0)).toStrictEqual(4);
+        expect(mat.get(1, 1)).toStrictEqual(5);
+        expect(mat.get(1, 2)).toStrictEqual(6);
+        expect(mat.get(2, 0)).toStrictEqual(7);
+        expect(mat.get(2, 1)).toStrictEqual(8);
+        expect(mat.get(2, 2)).toStrictEqual(9);
+    });
+});
 
 describe("Mat3: Index based mutator", () => {
-    const mat = new Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    const mat = new Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     test("mutates values in a row major order, when value is set using row, col", () => {
-        mat.set(0, 0, 1)
-        mat.set(0, 1, 2)
-        mat.set(0, 2, 3)
-        mat.set(1, 0, 4)
-        mat.set(1, 1, 5)
-        mat.set(1, 2, 6)
-        mat.set(2, 0, 7)
-        mat.set(2, 1, 8)
-        mat.set(2, 2, 9)
+        mat.set(0, 0, 1);
+        mat.set(0, 1, 2);
+        mat.set(0, 2, 3);
+        mat.set(1, 0, 4);
+        mat.set(1, 1, 5);
+        mat.set(1, 2, 6);
+        mat.set(2, 0, 7);
+        mat.set(2, 1, 8);
+        mat.set(2, 2, 9);
 
-        expect(mat.get(0, 0)).toStrictEqual(1)
-        expect(mat.get(0, 1)).toStrictEqual(2)
-        expect(mat.get(0, 2)).toStrictEqual(3)
-        expect(mat.get(1, 0)).toStrictEqual(4)
-        expect(mat.get(1, 1)).toStrictEqual(5)
-        expect(mat.get(1, 2)).toStrictEqual(6)
-        expect(mat.get(2, 0)).toStrictEqual(7)
-        expect(mat.get(2, 1)).toStrictEqual(8)
-        expect(mat.get(2, 2)).toStrictEqual(9)
-    })
-})
-
+        expect(mat.get(0, 0)).toStrictEqual(1);
+        expect(mat.get(0, 1)).toStrictEqual(2);
+        expect(mat.get(0, 2)).toStrictEqual(3);
+        expect(mat.get(1, 0)).toStrictEqual(4);
+        expect(mat.get(1, 1)).toStrictEqual(5);
+        expect(mat.get(1, 2)).toStrictEqual(6);
+        expect(mat.get(2, 0)).toStrictEqual(7);
+        expect(mat.get(2, 1)).toStrictEqual(8);
+        expect(mat.get(2, 2)).toStrictEqual(9);
+    });
+});
 
 describe("Mat3: Add", () => {
-
-    const matA = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    const matB = new Mat3(7, 8, 9, 10, 11, 12, 13, 14, 15)
+    const matA = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    const matB = new Mat3(7, 8, 9, 10, 11, 12, 13, 14, 15);
 
     test("modifies out matrix with the result, when two matrices are added together", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.add(matC, matA, matB)
+        Mat3.add(matC, matA, matB);
 
-        expect(matC.get(0, 0)).toStrictEqual(8)
-        expect(matC.get(0, 1)).toStrictEqual(10)
-        expect(matC.get(0, 2)).toStrictEqual(12)
-        expect(matC.get(1, 0)).toStrictEqual(14)
-        expect(matC.get(1, 1)).toStrictEqual(16)
-        expect(matC.get(1, 2)).toStrictEqual(18)
-        expect(matC.get(2, 0)).toStrictEqual(20)
-        expect(matC.get(2, 1)).toStrictEqual(22)
-        expect(matC.get(2, 2)).toStrictEqual(24)
-    })
+        expect(matC.get(0, 0)).toStrictEqual(8);
+        expect(matC.get(0, 1)).toStrictEqual(10);
+        expect(matC.get(0, 2)).toStrictEqual(12);
+        expect(matC.get(1, 0)).toStrictEqual(14);
+        expect(matC.get(1, 1)).toStrictEqual(16);
+        expect(matC.get(1, 2)).toStrictEqual(18);
+        expect(matC.get(2, 0)).toStrictEqual(20);
+        expect(matC.get(2, 1)).toStrictEqual(22);
+        expect(matC.get(2, 2)).toStrictEqual(24);
+    });
 
     test("do not modify the original matrix, when two matrices are added together", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.add(matC, matA, matB)
+        Mat3.add(matC, matA, matB);
 
-        expect(matA.get(0, 0)).toStrictEqual(1)
-        expect(matA.get(0, 1)).toStrictEqual(2)
-        expect(matA.get(0, 2)).toStrictEqual(3)
-        expect(matA.get(1, 0)).toStrictEqual(4)
-        expect(matA.get(1, 1)).toStrictEqual(5)
-        expect(matA.get(1, 2)).toStrictEqual(6)
-        expect(matA.get(2, 0)).toStrictEqual(7)
-        expect(matA.get(2, 1)).toStrictEqual(8)
-        expect(matA.get(2, 2)).toStrictEqual(9)
+        expect(matA.get(0, 0)).toStrictEqual(1);
+        expect(matA.get(0, 1)).toStrictEqual(2);
+        expect(matA.get(0, 2)).toStrictEqual(3);
+        expect(matA.get(1, 0)).toStrictEqual(4);
+        expect(matA.get(1, 1)).toStrictEqual(5);
+        expect(matA.get(1, 2)).toStrictEqual(6);
+        expect(matA.get(2, 0)).toStrictEqual(7);
+        expect(matA.get(2, 1)).toStrictEqual(8);
+        expect(matA.get(2, 2)).toStrictEqual(9);
 
-        expect(matB.get(0, 0)).toStrictEqual(7)
-        expect(matB.get(0, 1)).toStrictEqual(8)
-        expect(matB.get(0, 2)).toStrictEqual(9)
-        expect(matB.get(1, 0)).toStrictEqual(10)
-        expect(matB.get(1, 1)).toStrictEqual(11)
-        expect(matB.get(1, 2)).toStrictEqual(12)
-        expect(matB.get(2, 0)).toStrictEqual(13)
-        expect(matB.get(2, 1)).toStrictEqual(14)
-        expect(matB.get(2, 2)).toStrictEqual(15)
-    })
+        expect(matB.get(0, 0)).toStrictEqual(7);
+        expect(matB.get(0, 1)).toStrictEqual(8);
+        expect(matB.get(0, 2)).toStrictEqual(9);
+        expect(matB.get(1, 0)).toStrictEqual(10);
+        expect(matB.get(1, 1)).toStrictEqual(11);
+        expect(matB.get(1, 2)).toStrictEqual(12);
+        expect(matB.get(2, 0)).toStrictEqual(13);
+        expect(matB.get(2, 1)).toStrictEqual(14);
+        expect(matB.get(2, 2)).toStrictEqual(15);
+    });
 
     test("returns the out matrix, when two matrices are added together", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        const returnedMat = Mat3.add(matC, matA, matB)
+        const returnedMat = Mat3.add(matC, matA, matB);
 
-        expect(returnedMat).toBe(matC)
-    })
-})
+        expect(returnedMat).toBe(matC);
+    });
+});
 
 describe("Mat3: Subtract", () => {
-
-    const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92)
-    const matB = new Mat3(7, 8, 9, 10, 11, 12, 13, 14, 15)
+    const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92);
+    const matB = new Mat3(7, 8, 9, 10, 11, 12, 13, 14, 15);
 
     test("modifies out matrix with the result, when two matrices are subtracted", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.subtract(matC, matA, matB)
+        Mat3.subtract(matC, matA, matB);
 
-        expect(matC.get(0, 0)).toStrictEqual(5)
-        expect(matC.get(0, 1)).toStrictEqual(14)
-        expect(matC.get(0, 2)).toStrictEqual(22)
-        expect(matC.get(1, 0)).toStrictEqual(33)
-        expect(matC.get(1, 1)).toStrictEqual(40)
-        expect(matC.get(1, 2)).toStrictEqual(53)
-        expect(matC.get(2, 0)).toStrictEqual(58)
-        expect(matC.get(2, 1)).toStrictEqual(67)
-        expect(matC.get(2, 2)).toStrictEqual(77)
-    })
+        expect(matC.get(0, 0)).toStrictEqual(5);
+        expect(matC.get(0, 1)).toStrictEqual(14);
+        expect(matC.get(0, 2)).toStrictEqual(22);
+        expect(matC.get(1, 0)).toStrictEqual(33);
+        expect(matC.get(1, 1)).toStrictEqual(40);
+        expect(matC.get(1, 2)).toStrictEqual(53);
+        expect(matC.get(2, 0)).toStrictEqual(58);
+        expect(matC.get(2, 1)).toStrictEqual(67);
+        expect(matC.get(2, 2)).toStrictEqual(77);
+    });
 
     test("do not modify the original matrix, when two matrices are subtracted", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.subtract(matC, matA, matB)
+        Mat3.subtract(matC, matA, matB);
 
-        expect(matA.get(0, 0)).toStrictEqual(12)
-        expect(matA.get(0, 1)).toStrictEqual(22)
-        expect(matA.get(0, 2)).toStrictEqual(31)
-        expect(matA.get(1, 0)).toStrictEqual(43)
-        expect(matA.get(1, 1)).toStrictEqual(51)
-        expect(matA.get(1, 2)).toStrictEqual(65)
-        expect(matA.get(2, 0)).toStrictEqual(71)
-        expect(matA.get(2, 1)).toStrictEqual(81)
-        expect(matA.get(2, 2)).toStrictEqual(92)
+        expect(matA.get(0, 0)).toStrictEqual(12);
+        expect(matA.get(0, 1)).toStrictEqual(22);
+        expect(matA.get(0, 2)).toStrictEqual(31);
+        expect(matA.get(1, 0)).toStrictEqual(43);
+        expect(matA.get(1, 1)).toStrictEqual(51);
+        expect(matA.get(1, 2)).toStrictEqual(65);
+        expect(matA.get(2, 0)).toStrictEqual(71);
+        expect(matA.get(2, 1)).toStrictEqual(81);
+        expect(matA.get(2, 2)).toStrictEqual(92);
 
-        expect(matB.get(0, 0)).toStrictEqual(7)
-        expect(matB.get(0, 1)).toStrictEqual(8)
-        expect(matB.get(0, 2)).toStrictEqual(9)
-        expect(matB.get(1, 0)).toStrictEqual(10)
-        expect(matB.get(1, 1)).toStrictEqual(11)
-        expect(matB.get(1, 2)).toStrictEqual(12)
-        expect(matB.get(2, 0)).toStrictEqual(13)
-        expect(matB.get(2, 1)).toStrictEqual(14)
-        expect(matB.get(2, 2)).toStrictEqual(15)
-    })
+        expect(matB.get(0, 0)).toStrictEqual(7);
+        expect(matB.get(0, 1)).toStrictEqual(8);
+        expect(matB.get(0, 2)).toStrictEqual(9);
+        expect(matB.get(1, 0)).toStrictEqual(10);
+        expect(matB.get(1, 1)).toStrictEqual(11);
+        expect(matB.get(1, 2)).toStrictEqual(12);
+        expect(matB.get(2, 0)).toStrictEqual(13);
+        expect(matB.get(2, 1)).toStrictEqual(14);
+        expect(matB.get(2, 2)).toStrictEqual(15);
+    });
 
     test("returns the out matrix, when two matrices are subtracted", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        const returnedMat = Mat3.subtract(matC, matA, matB)
+        const returnedMat = Mat3.subtract(matC, matA, matB);
 
-        expect(returnedMat).toBe(matC)
-    })
-})
-
+        expect(returnedMat).toBe(matC);
+    });
+});
 
 describe("Mat3: Scalar Multiply", () => {
-
-    const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92)
-    const scalar = 2
+    const matA = new Mat3(12, 22, 31, 43, 51, 65, 71, 81, 92);
+    const scalar = 2;
 
     test("modifies out matrix with the result, when matrix is multiplied with a scalar", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.multiplyScalar(matC, matA, scalar)
+        Mat3.multiplyScalar(matC, matA, scalar);
 
-        expect(matC.get(0, 0)).toStrictEqual(24)
-        expect(matC.get(0, 1)).toStrictEqual(44)
-        expect(matC.get(0, 2)).toStrictEqual(62)
-        expect(matC.get(1, 0)).toStrictEqual(86)
-        expect(matC.get(1, 1)).toStrictEqual(102)
-        expect(matC.get(1, 2)).toStrictEqual(130)
-        expect(matC.get(2, 0)).toStrictEqual(142)
-        expect(matC.get(2, 1)).toStrictEqual(162)
-        expect(matC.get(2, 2)).toStrictEqual(184)
-    })
+        expect(matC.get(0, 0)).toStrictEqual(24);
+        expect(matC.get(0, 1)).toStrictEqual(44);
+        expect(matC.get(0, 2)).toStrictEqual(62);
+        expect(matC.get(1, 0)).toStrictEqual(86);
+        expect(matC.get(1, 1)).toStrictEqual(102);
+        expect(matC.get(1, 2)).toStrictEqual(130);
+        expect(matC.get(2, 0)).toStrictEqual(142);
+        expect(matC.get(2, 1)).toStrictEqual(162);
+        expect(matC.get(2, 2)).toStrictEqual(184);
+    });
 
     test("do not modify the original matrix, when matrix is multiplied with a scalar", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.multiplyScalar(matC, matA, scalar)
+        Mat3.multiplyScalar(matC, matA, scalar);
 
-        expect(matA.get(0, 0)).toStrictEqual(12)
-        expect(matA.get(0, 1)).toStrictEqual(22)
-        expect(matA.get(0, 2)).toStrictEqual(31)
-        expect(matA.get(1, 0)).toStrictEqual(43)
-        expect(matA.get(1, 1)).toStrictEqual(51)
-        expect(matA.get(1, 2)).toStrictEqual(65)
-        expect(matA.get(2, 0)).toStrictEqual(71)
-        expect(matA.get(2, 1)).toStrictEqual(81)
-        expect(matA.get(2, 2)).toStrictEqual(92)
-    })
+        expect(matA.get(0, 0)).toStrictEqual(12);
+        expect(matA.get(0, 1)).toStrictEqual(22);
+        expect(matA.get(0, 2)).toStrictEqual(31);
+        expect(matA.get(1, 0)).toStrictEqual(43);
+        expect(matA.get(1, 1)).toStrictEqual(51);
+        expect(matA.get(1, 2)).toStrictEqual(65);
+        expect(matA.get(2, 0)).toStrictEqual(71);
+        expect(matA.get(2, 1)).toStrictEqual(81);
+        expect(matA.get(2, 2)).toStrictEqual(92);
+    });
 
     test("returns the out matrix, when matrix is multiplied with a scalar", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        const returnedMat = Mat3.multiplyScalar(matC, matA, scalar)
+        const returnedMat = Mat3.multiplyScalar(matC, matA, scalar);
 
-        expect(returnedMat).toBe(matC)
-    })
-})
-
+        expect(returnedMat).toBe(matC);
+    });
+});
 
 describe("Mat3: Matrix Multiply", () => {
-
-    const matA = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    const matB = new Mat3(10, 11, 12, 13, 14, 15, 16, 17, 18)
+    const matA = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    const matB = new Mat3(10, 11, 12, 13, 14, 15, 16, 17, 18);
 
     test("modifies out matrix with the result, when matrix is multiplied with a matrix", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.multiply(matC, matA, matB)
+        Mat3.multiply(matC, matA, matB);
 
-        expect(matC.get(0, 0)).toStrictEqual(84)
-        expect(matC.get(0, 1)).toStrictEqual(90)
-        expect(matC.get(0, 2)).toStrictEqual(96)
-        expect(matC.get(1, 0)).toStrictEqual(201)
-        expect(matC.get(1, 1)).toStrictEqual(216)
-        expect(matC.get(1, 2)).toStrictEqual(231)
-        expect(matC.get(2, 0)).toStrictEqual(318)
-        expect(matC.get(2, 1)).toStrictEqual(342)
-        expect(matC.get(2, 2)).toStrictEqual(366)
-    })
+        expect(matC.get(0, 0)).toStrictEqual(84);
+        expect(matC.get(0, 1)).toStrictEqual(90);
+        expect(matC.get(0, 2)).toStrictEqual(96);
+        expect(matC.get(1, 0)).toStrictEqual(201);
+        expect(matC.get(1, 1)).toStrictEqual(216);
+        expect(matC.get(1, 2)).toStrictEqual(231);
+        expect(matC.get(2, 0)).toStrictEqual(318);
+        expect(matC.get(2, 1)).toStrictEqual(342);
+        expect(matC.get(2, 2)).toStrictEqual(366);
+    });
 
     test("matrix product is not commutative", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.multiply(matC, matB, matA)
+        Mat3.multiply(matC, matB, matA);
 
-        expect(matC.get(0, 0)).toStrictEqual(138)
-        expect(matC.get(0, 1)).toStrictEqual(171)
-        expect(matC.get(0, 2)).toStrictEqual(204)
-        expect(matC.get(1, 0)).toStrictEqual(174)
-        expect(matC.get(1, 1)).toStrictEqual(216)
-        expect(matC.get(1, 2)).toStrictEqual(258)
-        expect(matC.get(2, 0)).toStrictEqual(210)
-        expect(matC.get(2, 1)).toStrictEqual(261)
-        expect(matC.get(2, 2)).toStrictEqual(312)
-    })
+        expect(matC.get(0, 0)).toStrictEqual(138);
+        expect(matC.get(0, 1)).toStrictEqual(171);
+        expect(matC.get(0, 2)).toStrictEqual(204);
+        expect(matC.get(1, 0)).toStrictEqual(174);
+        expect(matC.get(1, 1)).toStrictEqual(216);
+        expect(matC.get(1, 2)).toStrictEqual(258);
+        expect(matC.get(2, 0)).toStrictEqual(210);
+        expect(matC.get(2, 1)).toStrictEqual(261);
+        expect(matC.get(2, 2)).toStrictEqual(312);
+    });
 
     test("do not modify the original matrix, when matrix is multiplied with a matrix", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        Mat3.multiply(matC, matA, matB)
+        Mat3.multiply(matC, matA, matB);
 
-        expect(matA.get(0, 0)).toStrictEqual(1)
-        expect(matA.get(0, 1)).toStrictEqual(2)
-        expect(matA.get(0, 2)).toStrictEqual(3)
-        expect(matA.get(1, 0)).toStrictEqual(4)
-        expect(matA.get(1, 1)).toStrictEqual(5)
-        expect(matA.get(1, 2)).toStrictEqual(6)
-        expect(matA.get(2, 0)).toStrictEqual(7)
-        expect(matA.get(2, 1)).toStrictEqual(8)
-        expect(matA.get(2, 2)).toStrictEqual(9)
+        expect(matA.get(0, 0)).toStrictEqual(1);
+        expect(matA.get(0, 1)).toStrictEqual(2);
+        expect(matA.get(0, 2)).toStrictEqual(3);
+        expect(matA.get(1, 0)).toStrictEqual(4);
+        expect(matA.get(1, 1)).toStrictEqual(5);
+        expect(matA.get(1, 2)).toStrictEqual(6);
+        expect(matA.get(2, 0)).toStrictEqual(7);
+        expect(matA.get(2, 1)).toStrictEqual(8);
+        expect(matA.get(2, 2)).toStrictEqual(9);
 
-        expect(matB.get(0, 0)).toStrictEqual(10)
-        expect(matB.get(0, 1)).toStrictEqual(11)
-        expect(matB.get(0, 2)).toStrictEqual(12)
-        expect(matB.get(1, 0)).toStrictEqual(13)
-        expect(matB.get(1, 1)).toStrictEqual(14)
-        expect(matB.get(1, 2)).toStrictEqual(15)
-        expect(matB.get(2, 0)).toStrictEqual(16)
-        expect(matB.get(2, 1)).toStrictEqual(17)
-        expect(matB.get(2, 2)).toStrictEqual(18)
-    })
+        expect(matB.get(0, 0)).toStrictEqual(10);
+        expect(matB.get(0, 1)).toStrictEqual(11);
+        expect(matB.get(0, 2)).toStrictEqual(12);
+        expect(matB.get(1, 0)).toStrictEqual(13);
+        expect(matB.get(1, 1)).toStrictEqual(14);
+        expect(matB.get(1, 2)).toStrictEqual(15);
+        expect(matB.get(2, 0)).toStrictEqual(16);
+        expect(matB.get(2, 1)).toStrictEqual(17);
+        expect(matB.get(2, 2)).toStrictEqual(18);
+    });
 
     test("returns the out matrix, when matrix is multiplied with a matrix", () => {
-        const matC = new Mat3()
+        const matC = new Mat3();
 
-        const returnedMat = Mat3.multiply(matC, matA, matB)
+        const returnedMat = Mat3.multiply(matC, matA, matB);
 
-        expect(returnedMat).toBe(matC)
-    })
-})
-
+        expect(returnedMat).toBe(matC);
+    });
+});
 
 describe("Mat3: Vector Multiply", () => {
-
-    const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    const vec = new Vec3(1, 0, 2)
+    const mat = new Mat3(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    const vec = new Vec3(1, 0, 2);
 
     test("modifies out vector with the result, when matrix is multiplied with a vector", () => {
-        const vecRes = new Vec3()
+        const vecRes = new Vec3();
 
-        Mat3.multiplyVec(vecRes, mat, vec)
+        Mat3.multiplyVec(vecRes, mat, vec);
 
-        expect(vecRes.x()).toStrictEqual(7)
-        expect(vecRes.y()).toStrictEqual(16)
-        expect(vecRes.z()).toStrictEqual(25)
-    })
+        expect(vecRes.x()).toStrictEqual(7);
+        expect(vecRes.y()).toStrictEqual(16);
+        expect(vecRes.z()).toStrictEqual(25);
+    });
 
     test("do not modify the original matrix or vector, when matrix is multiplied with a vector", () => {
+        const vecRes = new Vec3();
 
-        const vecRes = new Vec3()
+        Mat3.multiplyVec(vecRes, mat, vec);
 
-        Mat3.multiplyVec(vecRes, mat, vec)
+        expect(mat.get(0, 0)).toStrictEqual(1);
+        expect(mat.get(0, 1)).toStrictEqual(2);
+        expect(mat.get(0, 2)).toStrictEqual(3);
+        expect(mat.get(1, 0)).toStrictEqual(4);
+        expect(mat.get(1, 1)).toStrictEqual(5);
+        expect(mat.get(1, 2)).toStrictEqual(6);
+        expect(mat.get(2, 0)).toStrictEqual(7);
+        expect(mat.get(2, 1)).toStrictEqual(8);
+        expect(mat.get(2, 2)).toStrictEqual(9);
 
-        expect(mat.get(0, 0)).toStrictEqual(1)
-        expect(mat.get(0, 1)).toStrictEqual(2)
-        expect(mat.get(0, 2)).toStrictEqual(3)
-        expect(mat.get(1, 0)).toStrictEqual(4)
-        expect(mat.get(1, 1)).toStrictEqual(5)
-        expect(mat.get(1, 2)).toStrictEqual(6)
-        expect(mat.get(2, 0)).toStrictEqual(7)
-        expect(mat.get(2, 1)).toStrictEqual(8)
-        expect(mat.get(2, 2)).toStrictEqual(9)
-
-        expect(vec.x()).toStrictEqual(1)
-        expect(vec.y()).toStrictEqual(0)
-        expect(vec.z()).toStrictEqual(2)
-    })
+        expect(vec.x()).toStrictEqual(1);
+        expect(vec.y()).toStrictEqual(0);
+        expect(vec.z()).toStrictEqual(2);
+    });
 
     test("returns the out vector, when matrix is multiplied with a vector", () => {
-        const vecRes = new Vec3()
+        const vecRes = new Vec3();
 
-        const returnedMat = Mat3.multiplyVec(vecRes, mat, vec)
+        const returnedMat = Mat3.multiplyVec(vecRes, mat, vec);
 
-        expect(returnedMat).toBe(vecRes)
-    })
-})
+        expect(returnedMat).toBe(vecRes);
+    });
+});
+
+describe("Mat3: Scalar Divide", () => {
+    const matA = new Mat3(2, 4, 6, 8, 10, 12, 14, 16, 18);
+
+    test("returns infinity matrix when divided by zero", () => {
+        const matC = new Mat3();
+        Mat3.div(matC, matA, 0);
+
+        expect(matC.get(0, 0)).toStrictEqual(Infinity);
+        expect(matC.get(0, 1)).toStrictEqual(Infinity);
+        expect(matC.get(0, 2)).toStrictEqual(Infinity);
+        expect(matC.get(1, 0)).toStrictEqual(Infinity);
+        expect(matC.get(1, 1)).toStrictEqual(Infinity);
+        expect(matC.get(1, 2)).toStrictEqual(Infinity);
+        expect(matC.get(2, 0)).toStrictEqual(Infinity);
+        expect(matC.get(2, 1)).toStrictEqual(Infinity);
+        expect(matC.get(2, 2)).toStrictEqual(Infinity);
+    });
+
+    test("returns matrix with elements divided by scalar, when divided by scalar", () => {
+        const matC = new Mat3();
+        Mat3.div(matC, matA, 2);
+
+        expect(matC.get(0, 0)).toStrictEqual(1);
+        expect(matC.get(0, 1)).toStrictEqual(2);
+        expect(matC.get(0, 2)).toStrictEqual(3);
+        expect(matC.get(1, 0)).toStrictEqual(4);
+        expect(matC.get(1, 1)).toStrictEqual(5);
+        expect(matC.get(1, 2)).toStrictEqual(6);
+        expect(matC.get(2, 0)).toStrictEqual(7);
+        expect(matC.get(2, 1)).toStrictEqual(8);
+        expect(matC.get(2, 2)).toStrictEqual(9);
+    });
+
+    test("returns the output matrix, when divided by scalar", () => {
+        const matC = new Mat3();
+        const matD = Mat3.div(matC, matA, 2);
+
+        expect(matC).toBe(matD);
+    });
+});
+
+describe("Mat3: Transpose", () => {
+    const matA = new Mat3(2, 4, 6, 8, 10, 12, 14, 16, 18);
+    test("returns a matrix with rows and columns exchanged, when transposing", () => {
+        const matC = new Mat3();
+
+        Mat3.transpose(matC, matA);
+
+        expect(matC.get(0, 0)).toStrictEqual(matA.get(0, 0));
+        expect(matC.get(0, 1)).toStrictEqual(matA.get(1, 0));
+        expect(matC.get(0, 2)).toStrictEqual(matA.get(2, 0));
+        expect(matC.get(1, 0)).toStrictEqual(matA.get(0, 1));
+        expect(matC.get(1, 1)).toStrictEqual(matA.get(1, 1));
+        expect(matC.get(1, 2)).toStrictEqual(matA.get(2, 1));
+        expect(matC.get(2, 0)).toStrictEqual(matA.get(0, 2));
+        expect(matC.get(2, 1)).toStrictEqual(matA.get(1, 2));
+        expect(matC.get(2, 2)).toStrictEqual(matA.get(2, 2));
+    });
+
+    test("returns the output matrix, when taking transpose of a matrix", () => {
+        const matC = new Mat3();
+        const matD = Mat3.transpose(matC, matA);
+
+        expect(matC).toBe(matD);
+    });
+});
+
+describe("Mat3: Determinants", () => {
+    const singularMatrices = [
+        new Mat3(1, 0, 1, 1, 0, 1, 2, 3, 4),
+        new Mat3(1, 1, 1, 3, 4, 5, 1, 1, 1),
+        new Mat3(1, 2, 3, 1, 2, 4, 1, 2, 5),
+        new Mat3(0, 0, 0, 1, 2, 3, 4, 5, 6),
+        new Mat3(0, 1, 2, 0, 3, 4, 0, 5, 6),
+    ];
+
+    test("returns non-zero determinant for non-singular matrix", () => {
+        const mat = new Mat3(2, -1, 3, 1, 0, 4, -2, 1, 5);
+        expect(Mat3.det(mat)).toStrictEqual(8);
+    });
+
+    test.each(singularMatrices)(
+        "return zero determinant for singular matrix (%o)",
+        (mat) => {
+            expect(Mat3.det(mat)).toStrictEqual(0);
+        },
+    );
+});
+
+describe("Mat3: Inverse", () => {
+    const singularMatrices = [
+        new Mat3(1, 0, 1, 1, 0, 1, 2, 3, 4),
+        new Mat3(1, 1, 1, 3, 4, 5, 1, 1, 1),
+        new Mat3(1, 2, 3, 1, 2, 4, 1, 2, 5),
+        new Mat3(0, 0, 0, 1, 2, 3, 4, 5, 6),
+        new Mat3(0, 1, 2, 0, 3, 4, 0, 5, 6),
+    ];
+    const mat = new Mat3(1, 0, 2, 2, -1, 3, 4, 1, 8);
+
+    test("returns non-zero matrix for non-singular matrix", () => {
+        const invMat = new Mat3();
+
+        Mat3.inv(invMat, mat);
+
+        expect(invMat.get(0, 0)).toStrictEqual(-11);
+        expect(invMat.get(0, 1)).toStrictEqual(2);
+        expect(invMat.get(0, 2)).toStrictEqual(2);
+        expect(invMat.get(1, 0)).toStrictEqual(-4);
+        expect(invMat.get(1, 1)).toStrictEqual(0);
+        expect(invMat.get(1, 2)).toStrictEqual(1);
+        expect(invMat.get(2, 0)).toStrictEqual(6);
+        expect(invMat.get(2, 1)).toStrictEqual(-1);
+        expect(invMat.get(2, 2)).toStrictEqual(-1);
+    });
+
+    test("returns the output matrix, when inverting a non-singular matrix", () => {
+        const matC = new Mat3();
+        const matD = Mat3.inv(matC, mat);
+
+        expect(matC).toBe(matD);
+    });
+
+    test.each(singularMatrices)(
+        "return null matrix when inverting singular matrix (%o)",
+        (mat) => {
+            expect(Mat3.inv(new Mat3(), mat)).toBeNull();
+        },
+    );
+});
